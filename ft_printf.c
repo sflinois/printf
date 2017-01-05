@@ -11,9 +11,27 @@
 /* ************************************************************************** */
 
 #include <stdarg.h>
+#include "../libft/includes/libft.h"
+#include "ft_printf.h"
 
-void		ft_printf(char *test, ...)
+int	ft_printf(const char *format, ...)
 {
 	va_list		args;
-	void		last;
+	char		*test;
+	int		ret;
+
+	ft_putstr(format);
+	va_start(args, format);
+	test = va_arg(args, char*);
+	ft_putstr(format);
+	ret = 0;
+	va_end(args);
+	return (ret);
+}
+
+int	main(void)
+{
+
+	ft_printf("test%d");
+	return (0);
 }
