@@ -6,7 +6,7 @@
 #    By: sflinois <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/04 09:38:34 by sflinois          #+#    #+#              #
-#    Updated: 2017/01/07 12:26:48 by sflinois         ###   ########.fr        #
+#    Updated: 2017/01/07 13:30:48 by sflinois         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -104,6 +104,8 @@ $(NAME): $(SRC) $(INC)
 	@ar rc $(NAME) $(OBJ)
 	@ranlib $(NAME)
 	@echo $(CCGREEN) "Libft OK" $(CCEND)
+
+makec: all clean
 
 clean:
 	@rm -f $(OBJ)

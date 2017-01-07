@@ -1,23 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/10 12:10:17 by sflinois          #+#    #+#             */
-/*   Updated: 2017/01/07 14:03:47 by sflinois         ###   ########.fr       */
+/*   Created: 2017/01/07 13:21:44 by sflinois          #+#    #+#             */
+/*   Updated: 2017/01/07 13:22:11 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include "includes/libft.h"
+#ifndef FT_PRINTF_H
+#define FT_PRINTF_H
 
-int		main(void)
-{
-	ft_printf("test%5%test");
-	printf("\n");
-	printf("test%5%test");
-	printf("\n");
-	return 0;
-}
+#endif
