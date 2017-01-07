@@ -1,20 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/10 12:10:17 by sflinois          #+#    #+#             */
-/*   Updated: 2017/01/07 12:33:01 by sflinois         ###   ########.fr       */
+/*   Created: 2016/12/21 11:47:52 by sflinois          #+#    #+#             */
+/*   Updated: 2016/12/21 11:47:55 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include "includes/libft.h"
+#include "../../includes/libft.h"
 
-int		main(void)
+int		ft_tolower(int c)
 {
-	ft_printf("test");
-	return 0;
+	return (c >= 'A' && c <= 'Z' ? c - 'A' + 'a' : c);
 }

@@ -1,20 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_btree_create_node.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/10 12:10:17 by sflinois          #+#    #+#             */
-/*   Updated: 2017/01/07 12:33:01 by sflinois         ###   ########.fr       */
+/*   Created: 2016/11/11 17:34:55 by sflinois          #+#    #+#             */
+/*   Updated: 2016/12/21 11:28:23 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include "includes/libft.h"
+#include "../../includes/libft.h"
+#include <stdlib.h>
 
-int		main(void)
+t_btree		*ft_btree_create_node(void *item)
 {
-	ft_printf("test");
-	return 0;
+	t_btree *node;
+
+	node = NULL;
+	if ((node = (t_btree*)malloc(sizeof(*node))))
+	{
+		node->left = 0;
+		node->right = 0;
+		node->item = item;
+	}
+	return (node);
 }

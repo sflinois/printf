@@ -1,20 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/10 12:10:17 by sflinois          #+#    #+#             */
-/*   Updated: 2017/01/07 12:33:01 by sflinois         ###   ########.fr       */
+/*   Created: 2016/11/08 13:51:03 by sflinois          #+#    #+#             */
+/*   Updated: 2016/12/21 11:47:20 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include "includes/libft.h"
+#include "../../includes/libft.h"
+#include <string.h>
 
-int		main(void)
+char	*ft_strrchr(const char *s, int c)
 {
-	ft_printf("test");
-	return 0;
+	int		i;
+
+	i = ft_strlen(s);
+	if ((char)c == '\0')
+		return ((char *)(s + i));
+	while (s[--i])
+		if (s[i] == (char)c)
+			return ((char *)(s + i));
+	return (NULL);
 }

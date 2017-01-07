@@ -1,20 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_base2dec.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/10 12:10:17 by sflinois          #+#    #+#             */
-/*   Updated: 2017/01/07 12:33:01 by sflinois         ###   ########.fr       */
+/*   Created: 2016/11/14 11:56:09 by sflinois          #+#    #+#             */
+/*   Updated: 2016/12/21 11:36:38 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include "includes/libft.h"
+#include "../../includes/libft.h"
 
-int		main(void)
+int		ft_base2dec(int nb, int base)
 {
-	ft_printf("test");
-	return 0;
+	int		pow;
+	int		ret;
+	int		neg;
+
+	pow = 0;
+	ret = 0;
+	neg = 0;
+	if (nb < 0)
+	{
+		nb = -nb;
+		neg = 1;
+	}
+	if (base > 10 || base <= 0)
+		return (0);
+	if (nb < base)
+		return (nb);
+	while (nb >= base)
+	{
+		ret += nb % 10 * ft_pow(10, pow);
+		pow++;
+		nb /= 10;
+	}
+	if (neg)
+		return (-ret);
+	return (ret);
 }

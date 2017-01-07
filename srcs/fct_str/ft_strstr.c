@@ -1,20 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/10 12:10:17 by sflinois          #+#    #+#             */
-/*   Updated: 2017/01/07 12:33:01 by sflinois         ###   ########.fr       */
+/*   Created: 2016/11/08 13:56:48 by sflinois          #+#    #+#             */
+/*   Updated: 2016/12/21 11:47:34 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include "includes/libft.h"
+#include "../../includes/libft.h"
 
-int		main(void)
+char	*ft_strstr(const char *big, const char *little)
 {
-	ft_printf("test");
-	return 0;
+	unsigned int		i;
+	unsigned int		j;
+
+	i = 0;
+	j = 0;
+	if (!(*little))
+		return ((char*)big);
+	while (big[i])
+	{
+		while (big[i + j] == little[j])
+		{
+			if (!(little[j]))
+				return ((char *)(big + i));
+			j++;
+		}
+		if (!(little[j]))
+			return ((char *)(big + i));
+		j = 0;
+		i++;
+	}
+	return (NULL);
 }

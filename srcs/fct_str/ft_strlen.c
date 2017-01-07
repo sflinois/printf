@@ -1,20 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/10 12:10:17 by sflinois          #+#    #+#             */
-/*   Updated: 2017/01/07 12:33:01 by sflinois         ###   ########.fr       */
+/*   Created: 2016/12/21 11:45:23 by sflinois          #+#    #+#             */
+/*   Updated: 2016/12/21 11:45:26 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include "includes/libft.h"
+#include <string.h>
+#include "../../includes/libft.h"
 
-int		main(void)
+size_t	ft_strlen(const char *s)
 {
-	ft_printf("test");
-	return 0;
+	char	*str;
+
+	str = (char *)s;
+	while (*str)
+		str++;
+	return (str - s);
 }

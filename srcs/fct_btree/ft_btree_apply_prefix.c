@@ -1,20 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_btree_apply_prefix.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/10 12:10:17 by sflinois          #+#    #+#             */
-/*   Updated: 2017/01/07 12:33:01 by sflinois         ###   ########.fr       */
+/*   Created: 2016/11/11 17:49:45 by sflinois          #+#    #+#             */
+/*   Updated: 2016/12/21 10:51:28 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include "includes/libft.h"
+#include "../../includes/libft.h"
 
-int		main(void)
+void	ft_btree_apply_prefix(t_btree *root, void (*applyf)(void *))
 {
-	ft_printf("test");
-	return 0;
+	if (root)
+	{
+		(*applyf)(root->item);
+		if (root->left)
+			ft_btree_apply_prefix(root->left, *applyf);
+		if (root->right)
+			ft_btree_apply_prefix(root->right, *applyf);
+	}
 }

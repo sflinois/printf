@@ -1,20 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/10 12:10:17 by sflinois          #+#    #+#             */
-/*   Updated: 2017/01/07 12:33:01 by sflinois         ###   ########.fr       */
+/*   Created: 2016/11/08 13:43:21 by sflinois          #+#    #+#             */
+/*   Updated: 2016/12/21 11:42:34 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include "includes/libft.h"
+#include "../../includes/libft.h"
+#include <string.h>
 
-int		main(void)
+char	*ft_strchr(const char *s, int c)
 {
-	ft_printf("test");
-	return 0;
+	int		i;
+
+	i = 0;
+	while (s[i++])
+		if (s[i - 1] == (char)c)
+			return ((char *)(s + i - 1));
+	if (s[i - 1] == (char)c)
+		return ((char *)(s + i - 1));
+	return (NULL);
 }

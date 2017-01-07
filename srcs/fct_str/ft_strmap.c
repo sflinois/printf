@@ -1,20 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/10 12:10:17 by sflinois          #+#    #+#             */
-/*   Updated: 2017/01/07 12:33:01 by sflinois         ###   ########.fr       */
+/*   Created: 2016/11/06 14:53:56 by sflinois          #+#    #+#             */
+/*   Updated: 2016/12/21 11:45:33 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include "includes/libft.h"
+#include "../../includes/libft.h"
+#include <stdlib.h>
+#include <string.h>
 
-int		main(void)
+char	*ft_strmap(char const *s, char (*f)(char))
 {
-	ft_printf("test");
-	return 0;
+	char	*str;
+	size_t	i;
+
+	if (!s)
+		return (NULL);
+	i = ft_strlen(s);
+	if (!(str = (char*)malloc(sizeof(char) * (i + 1))))
+		return (NULL);
+	str[i] = s[i];
+	while (i-- > 0)
+		str[i] = f(s[i]);
+	str[i] = '\0';
+	return (str);
 }
