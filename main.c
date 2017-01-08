@@ -6,7 +6,7 @@
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/10 12:10:17 by sflinois          #+#    #+#             */
-/*   Updated: 2017/01/07 14:03:47 by sflinois         ###   ########.fr       */
+/*   Updated: 2017/01/08 16:41:42 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,12 @@
 
 int		main(void)
 {
-	ft_printf("test%5%test");
+	int a = -10;
+	//char *s = "test";
+
+	ft_printf("test%d%%test", a);
 	printf("\n");
-	printf("test%5%test");
+	printf("%S", L"Ѡ9");
 	printf("\n");
 	return 0;
 }
