@@ -6,7 +6,7 @@
 #    By: sflinois <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/04 09:38:34 by sflinois          #+#    #+#              #
-#    Updated: 2017/01/07 13:30:48 by sflinois         ###   ########.fr        #
+#    Updated: 2017/01/09 17:09:29 by sflinois         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,7 @@ SRC = 	$(D_BTREE)/ft_btree_create_node.c $(D_BTREE)/ft_btree_apply_prefix.c \
 	\
 	$(D_PUT)/ft_putchar.c $(D_PUT)/ft_putchar_fd.c $(D_PUT)/ft_putendl.c \
 	$(D_PUT)/ft_putendl_fd.c $(D_PUT)/ft_putnbr.c $(D_PUT)/ft_putnbr_fd.c \
-	$(D_PUT)/ft_putstr.c $(D_PUT)/ft_putstr_fd.c $(D_PUT)/ft_printf.c \
+	$(D_PUT)/ft_putstr.c $(D_PUT)/ft_putstr_fd.c \
 	\
 	$(D_STR)/ft_itoa.c $(D_STR)/ft_strcat.c $(D_STR)/ft_strchr.c \
 	$(D_STR)/ft_strclr.c $(D_STR)/ft_strcmp.c $(D_STR)/ft_strcpy.c \
@@ -58,6 +58,9 @@ SRC = 	$(D_BTREE)/ft_btree_create_node.c $(D_BTREE)/ft_btree_apply_prefix.c \
 	$(D_STR)/ft_strnew.c $(D_STR)/ft_strnstr.c $(D_STR)/ft_strrchr.c \
 	$(D_STR)/ft_strsplit.c $(D_STR)/ft_strstr.c $(D_STR)/ft_strsub.c \
 	$(D_STR)/ft_strtrim.c $(D_STR)/ft_tolower.c $(D_STR)/ft_toupper.c \
+	$(D_STR)/ft_itoa_base.c \
+	\
+	f_printf/ft_printf.c f_printf/fct_type_args.c
 
 OBJ = 	ft_btree_create_node.o ft_btree_apply_prefix.o \
 	ft_btree_apply_infix.o ft_btree_apply_suffix.o \
@@ -78,7 +81,7 @@ OBJ = 	ft_btree_create_node.o ft_btree_apply_prefix.o \
 	\
 	ft_putchar.o ft_putchar_fd.o ft_putendl.o \
 	ft_putendl_fd.o ft_putnbr.o ft_putnbr_fd.o \
-	ft_putstr.o ft_putstr_fd.o ft_printf.o\
+	ft_putstr.o ft_putstr_fd.o \
 	\
 	ft_itoa.o ft_strcat.o ft_strchr.o \
 	ft_strclr.o ft_strcmp.o ft_strcpy.o \
@@ -90,6 +93,9 @@ OBJ = 	ft_btree_create_node.o ft_btree_apply_prefix.o \
 	ft_strnew.o ft_strnstr.o ft_strrchr.o \
 	ft_strsplit.o ft_strstr.o ft_strsub.o \
 	ft_strtrim.o ft_tolower.o ft_toupper.o \
+	ft_itoa_base.o \
+	\
+	ft_printf.o fct_type_args.o
 
 INCS = includes/
 

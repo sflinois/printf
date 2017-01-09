@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   ft_itoa_base.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/08 09:54:22 by sflinois          #+#    #+#             */
-/*   Updated: 2017/01/09 16:13:09 by sflinois         ###   ########.fr       */
+/*   Created: 2017/01/09 17:05:44 by sflinois          #+#    #+#             */
+/*   Updated: 2017/01/09 17:06:19 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-char	*ft_itoa(int n)
+char	*ft_itoa_base(int n, unsigned int base)
 {
 	unsigned int	nui;
 	unsigned int	i;
@@ -22,9 +22,9 @@ char	*ft_itoa(int n)
 
 	i = (n < 0) ? 2 : 1;
 	nui = (n < 0) ? -n : n;
-	while (nui > 9)
+	while (nui > (base - 1))
 	{
-		nui /= 10;
+		nui /= base;
 		i++;
 	}
 	if (!(str = (char *)malloc(sizeof(char) * (i + 1))))
@@ -33,10 +33,10 @@ char	*ft_itoa(int n)
 	nui = (n < 0) ? -n : n;
 	if (n < 0)
 		str[0] = '-';
-	while (nui > 9)
+	while (nui > (base - 1))
 	{
-		str[i--] = nui % 10 + '0';
-		nui /= 10;
+		str[i--] = nui % base + '0';
+		nui /= base;
 	}
 	str[i] = nui + '0';
 	return (str);

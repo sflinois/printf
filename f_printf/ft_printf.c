@@ -6,52 +6,47 @@
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 12:41:55 by sflinois          #+#    #+#             */
-/*   Updated: 2017/01/08 16:59:52 by sflinois         ###   ########.fr       */
+/*   Updated: 2017/01/09 17:14:31 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdarg.h>
-#include "../../includes/libft.h"
-#include "../../includes/ft_printf.h"
+#include "../includes/libft.h"
+#include "../includes/ft_printf.h"
 
-
-static int	is_arg_type(char c)
+static void	convert_arg (t_expr expr, va_list *args)
 {
-	return ((c == 's' || c == 'S' || c == 'p' || c == 'd' || c == 'D' || 
-			c == 'i' || c == 'o' || c == 'O' || c == 'u' ||c == 'U' || c == 'x'
-			|| c == 'X' || c == 'c' || c == 'C' || c == '%') ? 1 : 0);
-}
-
-static void	convert_arg (char type, va_list *args)
-{
+	static const t_conv conv_tab[] = {
+		{"diouxX", conv_int_arg},
+		{"DOU", conv_dou_arg},
+		{"cC", conv_c_arg},
+		{"sS", conv_s_arg},
+		{"p", conv_p_arg},
+		{"%", conv_pct_arg},
+		{NULL, NULL},
+	};
 	int		i;
+	int		nb_c;
 
-	if (type == '%')
-		ft_putchar('%');
-	if (type == 'd' || type == 'i')
-	{
-		i = va_arg(*args, int);
-		ft_putnbr(i);
-	}
+	i = 0;
+	while(!ft_strchr(conv_tab[i].type, expr.type))
+		i++;
+	nb_c = conv_tab[i].conv(expr, args);
 }
 
 static int	process_conv(va_list *args, char **format)
 {
+	t_expr	expr;
+
 	if (**format == '%')
 	{
 		(*format)++;
-		while (**format && !is_arg_type(**format))
-		{
-			//if (is_flag(**format))
-				
-
-
+		while (**format && !ft_strchr("sSpdDioOuUxXcC%", (int)**format))
 			(*format)++;
-		}
-		convert_arg(**format, args);
+		expr.type = **format;
+		convert_arg(expr, args);
 		if (**format)
 			(*format)++;
-		va_arg(*args, char*);
 	}
 	return (1);
 }
