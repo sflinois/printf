@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_pow.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/10 12:10:17 by sflinois          #+#    #+#             */
-/*   Updated: 2017/01/10 15:28:14 by sflinois         ###   ########.fr       */
+/*   Created: 2016/11/14 10:12:27 by sflinois          #+#    #+#             */
+/*   Updated: 2017/01/10 13:30:52 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include "includes/libft.h"
+#include "../includes/libft.h"
 
-int		main(void)
+int		ft_pow(int nb, int pow)
 {
-	ft_printf("test%xtest", 10);
-	printf("\n");
-	printf("test%xtest", 10);
-	printf("\n");
-	return 0;
+	if (nb == 0 || pow < 0)
+		return (0);
+	if (pow == 0)
+		return (1);
+	nb *= ft_pow(nb, pow - 1);
+	return (nb);
 }

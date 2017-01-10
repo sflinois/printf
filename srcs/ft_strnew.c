@@ -1,23 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/10 12:10:17 by sflinois          #+#    #+#             */
-/*   Updated: 2017/01/10 15:28:14 by sflinois         ###   ########.fr       */
+/*   Created: 2016/12/21 11:46:47 by sflinois          #+#    #+#             */
+/*   Updated: 2017/01/10 13:30:52 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <string.h>
+#include <stdlib.h>
+#include "../includes/libft.h"
 #include <stdio.h>
-#include "includes/libft.h"
 
-int		main(void)
+char	*ft_strnew(size_t size)
 {
-	ft_printf("test%xtest", 10);
-	printf("\n");
-	printf("test%xtest", 10);
-	printf("\n");
-	return 0;
+	char	*str;
+	size_t	tmp;
+
+	if (!(str = (char*)malloc(size + sizeof(char))))
+		return (NULL);
+	tmp = 0;
+	while (tmp <= size)
+	{
+		str[tmp] = '\0';
+		tmp += 1;
+	}
+	return (str);
 }

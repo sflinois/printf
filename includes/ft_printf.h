@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/07 13:21:44 by sflinois          #+#    #+#             */
-/*   Updated: 2017/01/09 12:19:24 by sflinois         ###   ########.fr       */
+/*   Created: 2017/01/10 15:24:30 by sflinois          #+#    #+#             */
+/*   Updated: 2017/01/10 15:28:36 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@
 #include <stdarg.h>
 
 /*
-** # define BI_JUSTIFY = 1
-** # define BI_ZERO = 2
-** # define BI_PLUS = 4
-** # define BI_BLANK = 8
-** # define BI_SHARP = 16
-*/
+ * ** # define BI_JUSTIFY = 1
+ * ** # define BI_ZERO = 2
+ * ** # define BI_PLUS = 4
+ * ** # define BI_BLANK = 8
+ * ** # define BI_SHARP = 16
+ * */
 
 typedef struct	s_expr
 {	
@@ -34,7 +34,6 @@ typedef struct	s_conv
 	int			(*conv)(t_expr expr, va_list *args);
 }				t_conv;
 
-int					ft_printf(const char *format, ...);
 int					conv_int_arg(t_expr, va_list *args);
 int					conv_dou_arg(t_expr, va_list *args);
 int					conv_c_arg(t_expr, va_list *args);

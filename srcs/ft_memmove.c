@@ -1,23 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/10 12:10:17 by sflinois          #+#    #+#             */
-/*   Updated: 2017/01/10 15:28:14 by sflinois         ###   ########.fr       */
+/*   Created: 2016/11/10 10:23:05 by sflinois          #+#    #+#             */
+/*   Updated: 2017/01/10 13:30:52 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include "includes/libft.h"
+#include "../includes/libft.h"
+#include <string.h>
+#include <stdlib.h>
 
-int		main(void)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	ft_printf("test%xtest", 10);
-	printf("\n");
-	printf("test%xtest", 10);
-	printf("\n");
-	return 0;
+	unsigned int		i;
+
+	i = 0;
+	if (dst > src)
+	{
+		while (len > 0)
+		{
+			len--;
+			*(unsigned char*)(dst + len) = *(unsigned char*)(src + len);
+		}
+	}
+	else
+	{
+		while (i < len)
+		{
+			*(unsigned char*)(dst + i) = *(unsigned char*)(src + i);
+			i++;
+		}
+	}
+	return (dst);
 }
