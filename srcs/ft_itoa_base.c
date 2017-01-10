@@ -6,7 +6,7 @@
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/09 17:05:44 by sflinois          #+#    #+#             */
-/*   Updated: 2017/01/10 14:58:30 by sflinois         ###   ########.fr       */
+/*   Updated: 2017/01/10 16:33:58 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 #include <stdlib.h>
 #include <string.h>
 
-char	*ft_itoa_base(int n, unsigned int base)
+char	*ft_itoa_base(unsigned int n, unsigned int base, int maj)
 {
 	unsigned int	nui;
 	unsigned int	i;
 	char			*str;
 
-	i = (n < 0) ? 2 : 1;
-	nui = (n < 0) ? -n : n;
+	i = 1;
+	nui = n;
 	while (nui > (base - 1))
 	{
 		nui /= base;
@@ -30,14 +30,12 @@ char	*ft_itoa_base(int n, unsigned int base)
 	if (!(str = (char *)malloc(sizeof(char) * (i + 1))))
 		return (NULL);
 	str[i--] = '\0';
-	nui = (n < 0) ? -n : n;
-	if (n < 0)
-		str[0] = '-';
+	nui = n;
 	while (nui > (base - 1))
 	{
-		str[i--] = ft_digit_to_char(nui % base, base, 1);
+		str[i--] = ft_digit_to_char(nui % base, base, maj);
 		nui /= base;
 	}
-	str[i] = nui + '0';
+	str[i] = ft_digit_to_char(nui, base, maj);
 	return (str);
 }

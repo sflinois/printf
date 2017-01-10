@@ -6,7 +6,7 @@
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/10 14:57:40 by sflinois          #+#    #+#             */
-/*   Updated: 2017/01/10 15:02:50 by sflinois         ###   ########.fr       */
+/*   Updated: 2017/01/10 16:11:50 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,14 @@ char	ft_digit_to_char(int d, int base, int maj)
 	{
 		if (d >= 0 && d <= base)
 		{
-			if (d < base)
+			if (d < 10)
 				return (d + '0');
-			if (d >= base)
+			if (d >= 10)
 			{
 				if (maj)
-					return (d + 'A');
+					return (d + 'A' - 10);
 				else
-					return (d + 'a');
+					return (d + 'a' - 10);
 			}
 		}
 	}

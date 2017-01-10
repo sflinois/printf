@@ -6,7 +6,7 @@
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/15 11:22:10 by sflinois          #+#    #+#             */
-/*   Updated: 2017/01/10 15:28:55 by sflinois         ###   ########.fr       */
+/*   Updated: 2017/01/10 16:33:18 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ void				ft_btree_apply_infix(t_btree *root,
 		void (*applyf)(void *));
 void				ft_btree_apply_suffix(t_btree *root,
 		void (*applyf)(void *));
-char				*ft_itoa_base(int n, unsigned int base);
+char				*ft_itoa_base(unsigned int n, unsigned int base, int maj);
 char				ft_digit_to_char(int d, int base, int maj);
 int					ft_printf(const char *format, ...);
 
