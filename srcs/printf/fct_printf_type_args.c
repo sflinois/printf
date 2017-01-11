@@ -6,7 +6,7 @@
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/09 11:03:01 by sflinois          #+#    #+#             */
-/*   Updated: 2017/01/10 16:33:00 by sflinois         ###   ########.fr       */
+/*   Updated: 2017/01/11 11:23:29 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,24 +40,33 @@ int			conv_int_arg(t_expr expr, va_list *args)
 
 int			conv_dou_arg(t_expr expr, va_list *args)
 {
-	long int		i;
-	int				ret;
+	char		*disp;
+	long int	i;
+	int			ret;
 	
 	i = va_arg(*args, long int);
-	ft_putchar(expr.type);
-
-	ret = 1;
+	if (expr.type == 'D')
+		disp = ft_litoa(i);
+	if (expr.type == 'O')
+		disp = ft_litoa_base((unsigned long int)i, 8, 0);
+	if (expr.type == 'U')
+		disp = ft_litoa_base((unsigned long int)i, 10, 0);
+	ft_putstr(disp);
+	ret = ft_strlen(disp);
+	free(disp);
 	return (ret);
 }
 
 int			conv_c_arg(t_expr expr, va_list *args)
 {
-	char	c;
+	int		c;
 	int		ret;
 
 	c = va_arg(*args, int);
-	ft_putchar(c);
-	ft_putchar(expr.type);
+	if (expr.type == 'c')
+		ft_putchar((unsigned char)c);
+	if (expr.type == 'C')
+		ft_putchar((unsigned char)c);
 	ret = 1;
 	return (ret);
 }
@@ -68,34 +77,36 @@ int			conv_s_arg(t_expr expr, va_list *args)
 	int		ret;
 
 	s = va_arg(*args, char*);
-	ft_putstr(s);
-	ft_putchar(expr.type);
-	ret = 1;
+	if (expr.type == 's')
+		ft_putstr(s);
+	if (expr.type == 'S')
+		ft_putstr(s);
+	ret = ft_strlen(s);
 	return (ret);
 }
 
 int			conv_p_arg(t_expr expr, va_list *args)
 {
+	char	*disp;
 	void	*p	;
 	int		ret;
 
 	p = va_arg(*args, void*);
-	ft_putchar(expr.type);
-	ret = 1;
+	if (expr.type == 'p')
+		;
+	disp = ft_itoa_base((int)p, 16, 0);
+	ret = ft_strlen(disp);
+	free(disp);
 	return (ret);
 }
 
 int		conv_pct_arg(t_expr expr, va_list *args)
 {
-	char	pct;
 	int		i;
 	int		ret;
 	
 	i = va_arg(*args, int);
-
 	ft_putchar(expr.type);
-	pct = '%';
-	ft_putchar(pct);
 	ret = 1;
 	return (ret);
 }

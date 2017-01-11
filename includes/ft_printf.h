@@ -6,7 +6,7 @@
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/10 15:24:30 by sflinois          #+#    #+#             */
-/*   Updated: 2017/01/10 15:28:36 by sflinois         ###   ########.fr       */
+/*   Updated: 2017/01/11 11:29:22 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,17 @@
 #include <stdarg.h>
 
 /*
- * ** # define BI_JUSTIFY = 1
- * ** # define BI_ZERO = 2
- * ** # define BI_PLUS = 4
- * ** # define BI_BLANK = 8
- * ** # define BI_SHARP = 16
+ * ** # define F_JUSTIFY = 1
+ * ** # define F_ZERO = 2
+ * ** # define F_PLUS = 4
+ * ** # define F_BLANK = 8
+ * ** # define F_SHARP = 16
  * */
 
 typedef struct	s_expr
-{	
-	char		type;	
+{
+	unsigned char	flags;
+	char			type;	
 }				t_expr;
 
 typedef struct	s_conv

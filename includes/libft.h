@@ -6,7 +6,7 @@
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/15 11:22:10 by sflinois          #+#    #+#             */
-/*   Updated: 2017/01/10 16:33:18 by sflinois         ###   ########.fr       */
+/*   Updated: 2017/01/11 10:24:51 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int					ft_isdigit(int c);
 int					ft_isprint(int c);
 int					ft_isneg(int c);
 char				*ft_itoa(int n);
+char				*ft_litoa(long int n);
 void				*ft_memalloc(size_t size);
 void				*ft_memccpy(void *dst, const void *src, int c, size_t n);
 void				*ft_memchr(const void *s, int c, size_t n);
@@ -102,6 +103,7 @@ void				ft_btree_apply_infix(t_btree *root,
 void				ft_btree_apply_suffix(t_btree *root,
 		void (*applyf)(void *));
 char				*ft_itoa_base(unsigned int n, unsigned int base, int maj);
+char				*ft_litoa_base(unsigned long int n, unsigned int base, int maj);
 char				ft_digit_to_char(int d, int base, int maj);
 int					ft_printf(const char *format, ...);
 
