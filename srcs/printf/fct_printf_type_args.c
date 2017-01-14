@@ -24,6 +24,8 @@ int			conv_int_arg(t_expr expr, va_list *args)
 	i = va_arg(*args, int);
 	if (expr.type == 'd' || expr.type == 'i')
 		disp = ft_itoa(i);
+	if (expr.type == 'b')
+		disp = ft_itoa_base((unsigned int)i, 2, 0);
 	if (expr.type == 'o')
 		disp = ft_itoa_base((unsigned int)i, 8, 0);
 	if (expr.type == 'u')

@@ -17,7 +17,7 @@
 static int	convert_arg (t_expr expr, va_list *args)
 {
 	static const t_conv conv_tab[] = {
-		{"diouxX", conv_int_arg},
+		{"bdiouxX", conv_int_arg},
 		{"DOU", conv_dou_arg},
 		{"cC", conv_c_arg},
 		{"sS", conv_s_arg},
