@@ -123,7 +123,7 @@ int	process_conv(va_list *args, char **format)
 	t_expr	expr;
 	int		ret;
 
-	ret = -1;
+	ret = 0;
 	new_expr(&expr);
 	if (**format == '%')
 	{
@@ -137,7 +137,7 @@ int	process_conv(va_list *args, char **format)
 		if (**format)
 			(*format)++;
 	}
-	ft_putchar('\n');
+/*	ft_putchar('\n');
 	ft_putstr("flags : ");
 	ft_putnbr(expr.flags);
 	ft_putchar('\n');
@@ -150,6 +150,7 @@ int	process_conv(va_list *args, char **format)
 	ft_putstr("length : ");
 	ft_putnbr(expr.length);
 	ft_putchar('\n');
+*/
 	return (ret);
 }
 

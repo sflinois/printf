@@ -12,18 +12,16 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "includes/libft.h"
+//#include "includes/libft.h"
 
 int		main(void)
 {
 
-	ft_printf(" %-10d \n", 10);
-	ft_printf(" %d \n", 10);
-	ft_printf(" %-#10x \n", 10);
-	ft_printf(" %#x \n", 10);
-	printf(" %-10d \n", 10);
-	printf(" %d \n", 10);
-	printf(" %-#10x \n", 10);
-	printf(" %#x \n", 10);
+	printf("%d\n", 42);
+	printf("%0d\n", 42);
+//	printf(" %-10d \n", 10);
+//	printf(" %d \n", 10);
+//	printf(" %-#10x \n", 10);
+//	printf(" %#x \n", 10);
 	return 0;
 }
