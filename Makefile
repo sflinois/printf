@@ -45,7 +45,8 @@ SRC_NAME = ft_btree_create_node.c ft_btree_apply_prefix.c \
 		ft_litoa.c
 		
 S_PRINTF_PATH = $(SRC_PATH)/printf
-S_PRINTF_NAME = ft_printf.c fct_printf_type_args.c
+S_PRINTF_NAME = ft_printf.c fct_printf_type_args.c fct_expr.c \
+		fct_printf_min_width.c
 
 OBJ_PATH = objs
 O_PRINTF_PATH = o_printf

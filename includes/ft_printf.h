@@ -37,6 +37,13 @@ typedef struct	s_conv
 	int			(*conv)(t_expr expr, va_list *args);
 }				t_conv;
 
+char					*apply_min_width(char *str, unsigned int min_width);
+
+void					new_expr(t_expr *expr);
+int					convert_arg (t_expr expr, va_list *args);
+int					expr_pars(char **format, t_expr *expr);
+int					process_conv(va_list *args, char **format);
+int					process_args(va_list *args, char *format);
 int					conv_int_arg(t_expr, va_list *args);
 int					conv_dou_arg(t_expr, va_list *args);
 int					conv_c_arg(t_expr, va_list *args);

@@ -16,13 +16,11 @@
 
 int		main(void)
 {
-	void	*p;
 
-	p = malloc(sizeof(void*));
-	ft_printf("Abc%dDef%dGhi", 10, 11);
-	printf("\n");
-	printf("Abc%dDef%dGhi", 10, 11);
-	printf("\n");
+	ft_printf(" %-10d \n", 10);
+	ft_printf(" %d \n", 10);
+	ft_printf(" %-#10x \n", 10);
+	ft_printf(" %#x \n", 10);
 	printf(" %-10d \n", 10);
 	printf(" %d \n", 10);
 	printf(" %-#10x \n", 10);

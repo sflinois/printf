@@ -34,6 +34,7 @@ int			conv_int_arg(t_expr expr, va_list *args)
 		disp = ft_itoa_base((unsigned int)i, 16, 0);
 	if (expr.type == 'X')
 		disp = ft_itoa_base((unsigned int)i, 16, 1);
+	disp = apply_min_width(disp, expr.min_width);
 	ft_putstr(disp);
 	ret = ft_strlen(disp);
 	free(disp);
@@ -53,6 +54,7 @@ int			conv_dou_arg(t_expr expr, va_list *args)
 		disp = ft_litoa_base((unsigned long int)i, 8, 0);
 	if (expr.type == 'U')
 		disp = ft_litoa_base((unsigned long int)i, 10, 0);
+	disp = apply_min_width(disp, expr.min_width);
 	ft_putstr(disp);
 	ret = ft_strlen(disp);
 	free(disp);
@@ -83,6 +85,7 @@ int			conv_s_arg(t_expr expr, va_list *args)
 		ft_putstr(s);
 	if (expr.type == 'S')
 		ft_putstr(s);
+	s = apply_min_width(s, expr.min_width);
 	ret = ft_strlen(s);
 	return (ret);
 }
@@ -97,6 +100,8 @@ int			conv_p_arg(t_expr expr, va_list *args)
 	if (expr.type == 'p')
 		;
 	disp = ft_itoa_base((int)p, 16, 0);
+	disp = apply_min_width(disp, expr.min_width);
+	ft_putstr(disp);
 	ret = ft_strlen(disp);
 	free(disp);
 	return (ret);

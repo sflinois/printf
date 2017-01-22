@@ -14,7 +14,7 @@
 #include "../includes/libft.h"
 #include "../includes/ft_printf.h"
 
-static int	convert_arg (t_expr expr, va_list *args)
+int	convert_arg (t_expr expr, va_list *args)
 {
 	static const t_conv conv_tab[] = {
 		{"bdiouxX", conv_int_arg},
@@ -38,7 +38,7 @@ static int	convert_arg (t_expr expr, va_list *args)
 }
 
 
-static int	expr_pars(char **format, t_expr *expr)
+int	expr_pars(char **format, t_expr *expr)
 {
 	char	*c;
 	
@@ -84,24 +84,47 @@ static int	expr_pars(char **format, t_expr *expr)
 	}
 
 	//length
-	//todo
+	expr->length = 0;
+	if (**format && (c = ft_strchr("hljz", (int)**format)))
+	{
+		if (*c == 'h')
+		{
+			if (*(c + 1) == 'h')
+			{
+				expr->length |= 1;
+				(*format)++;
+			}
+			else
+				expr->length |= 2;
+		}
+		if (*c == 'l')
+		{
+			if (*(c + 1) == 'l')
+			{
+				expr->length |= 4;
+				(*format)++;
+			}
+			else
+				expr->length |= 8;
+		}	
+		if (*c == 'j')
+			expr->length |= 16;
+		if (*c == 'z')
+			expr->length |= 32;
+		(*format)++;
+	}
 
-	ft_putchar('>');
-	ft_putnbr(expr->flags);
-	ft_putchar(':');
-	ft_putnbr(expr->min_width);
-	ft_putchar(':');
-	ft_putnbr(expr->precision);
-	ft_putchar('<');
+
 	return (1);
 }
 
-static int	process_conv(va_list *args, char **format)
+int	process_conv(va_list *args, char **format)
 {
 	t_expr	expr;
 	int		ret;
 
 	ret = -1;
+	new_expr(&expr);
 	if (**format == '%')
 	{
 		(*format)++;
@@ -114,21 +137,38 @@ static int	process_conv(va_list *args, char **format)
 		if (**format)
 			(*format)++;
 	}
+	ft_putchar('\n');
+	ft_putstr("flags : ");
+	ft_putnbr(expr.flags);
+	ft_putchar('\n');
+	ft_putstr("min_width : ");
+	ft_putnbr(expr.min_width);
+	ft_putchar('\n');
+	ft_putstr("precision : ");
+	ft_putnbr(expr.precision);
+	ft_putchar('\n');
+	ft_putstr("length : ");
+	ft_putnbr(expr.length);
+	ft_putchar('\n');
 	return (ret);
 }
 
-static int	process_args(va_list *args, char *format)
+int	process_args(va_list *args, char *format)
 {
+	int	ret;
+
+	ret = 0;
 	while (*format)
 	{
 		while (*format && *format != '%')
 		{
 			ft_putchar(*format);
 			format++;
+			ret++;
 		}
-		process_conv(args, &format);
+		ret += process_conv(args, &format);
 	}
-	return (1);
+	return (ret);
 }
 
 int			ft_printf(const char *format, ...)
