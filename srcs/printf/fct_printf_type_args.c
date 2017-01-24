@@ -6,12 +6,13 @@
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/09 11:03:01 by sflinois          #+#    #+#             */
-/*   Updated: 2017/01/11 14:00:27 by sflinois         ###   ########.fr       */
+/*   Updated: 2017/01/24 12:29:50 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdarg.h>
 #include <stdlib.h>
+#include <inttypes.h>
 #include "../includes/libft.h"
 #include "../includes/ft_printf.h"
 
@@ -34,7 +35,7 @@ int			conv_int_arg(t_expr expr, va_list *args)
 		disp = ft_itoa_base((unsigned int)nb.i, 16, 0);
 	if (expr.type == 'X')
 		disp = ft_itoa_base((unsigned int)nb.i, 16, 1);
-	disp = apply_min_width(disp, expr.min_width);
+	disp = apply_min_width(disp, expr);
 	ft_putstr(disp);
 	ret = ft_strlen(disp);
 	free(disp);
@@ -54,7 +55,7 @@ int			conv_dou_arg(t_expr expr, va_list *args)
 		disp = ft_litoa_base((unsigned long int)i, 8, 0);
 	if (expr.type == 'U')
 		disp = ft_litoa_base((unsigned long int)i, 10, 0);
-	disp = apply_min_width(disp, expr.min_width);
+	disp = apply_min_width(disp, expr);
 	ft_putstr(disp);
 	ret = ft_strlen(disp);
 	free(disp);
@@ -85,7 +86,7 @@ int			conv_s_arg(t_expr expr, va_list *args)
 		ft_putstr(s);
 	if (expr.type == 'S')
 		ft_putstr(s);
-	s = apply_min_width(s, expr.min_width);
+	s = apply_min_width(s, expr);
 	ret = ft_strlen(s);
 	return (ret);
 }
@@ -100,7 +101,7 @@ int			conv_p_arg(t_expr expr, va_list *args)
 	if (expr.type == 'p')
 		;
 	disp = ft_itoa_base((int)p, 16, 0);
-	disp = apply_min_width(disp, expr.min_width);
+	disp = apply_min_width(disp, expr);
 	ft_putstr(disp);
 	ret = ft_strlen(disp);
 	free(disp);

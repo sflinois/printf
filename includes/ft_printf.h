@@ -6,7 +6,7 @@
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/10 15:24:30 by sflinois          #+#    #+#             */
-/*   Updated: 2017/01/11 14:12:38 by sflinois         ###   ########.fr       */
+/*   Updated: 2017/01/24 12:26:50 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #define FT_PRINTF_H
 
 #include <stdarg.h>
+#include <inttypes.h>
 
 # define F_SHARP = 1
 # define F_ZERO = 2

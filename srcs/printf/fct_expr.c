@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include "../../includes/ft_printf.h"
 
 void		new_expr(t_expr *expr)
