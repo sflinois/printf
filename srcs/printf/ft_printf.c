@@ -6,7 +6,7 @@
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 12:41:55 by sflinois          #+#    #+#             */
-/*   Updated: 2017/01/24 12:39:33 by sflinois         ###   ########.fr       */
+/*   Updated: 2017/01/24 17:19:11 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,36 +85,33 @@ int	expr_pars(char **format, t_expr *expr)
 
 	//length
 	expr->length = 0;
-	if (**format && (c = ft_strchr("hljz", (int)**format)))
+	if (**format && (ft_strchr("hljz", (int)**format)))
 	{
-		if (*c == 'h')
+		if (**format == 'h')
 		{
-			if (*(c + 1) == 'h')
+			if (*((*format) + 1) == 'h')
 			{
-				expr->length |= 1;
+				expr->length = 1;
 				(*format)++;
 			}
 			else
-				expr->length |= 2;
+				expr->length = 2;
 		}
-		if (*c == 'l')
+		if (**format == 'l')
 		{
-			if (*(c + 1) == 'l')
+			expr->length = 8;
+			if (*((*format) + 1) == 'l')
 			{
-				expr->length |= 4;
+				expr->length = 4;
 				(*format)++;
 			}
-			else
-				expr->length |= 8;
 		}	
-		if (*c == 'j')
-			expr->length |= 16;
-		if (*c == 'z')
-			expr->length |= 32;
+		if (**format == 'j')
+			expr->length = 16;
+		if (**format == 'z')
+			expr->length = 32;
 		(*format)++;
 	}
-
-
 	return (1);
 }
 

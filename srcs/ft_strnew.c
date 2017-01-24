@@ -6,7 +6,7 @@
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/21 11:46:47 by sflinois          #+#    #+#             */
-/*   Updated: 2017/01/10 13:30:52 by sflinois         ###   ########.fr       */
+/*   Updated: 2017/01/24 17:03:51 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,9 @@
 char	*ft_strnew(size_t size)
 {
 	char	*str;
-	size_t	tmp;
 
 	if (!(str = (char*)malloc(size + sizeof(char))))
 		return (NULL);
-	tmp = 0;
-	while (tmp <= size)
-	{
-		str[tmp] = '\0';
-		tmp += 1;
-	}
+	ft_bzero((void*)str, size + 1);
 	return (str);
 }

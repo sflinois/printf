@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_litoa.c                                         :+:      :+:    :+:   */
+/*   ft_imttoa_base.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/11 10:23:17 by sflinois          #+#    #+#             */
-/*   Updated: 2017/01/24 12:27:34 by sflinois         ###   ########.fr       */
+/*   Created: 2017/01/24 15:07:36 by sflinois          #+#    #+#             */
+/*   Updated: 2017/01/24 16:05:33 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,30 +15,28 @@
 #include <string.h>
 #include <inttypes.h>
 
-char	*ft_imtoa(intmax_t n)
+char	*ft_imttoa_base(uintmax_t n, unsigned int base, int maj)
 {
 	uintmax_t	nui;
-	unsigned int	i;
+	unsigned int		i;
 	char				*str;
 
-	i = (n < 0) ? 2 : 1;
-	nui = (n < 0) ? -n : n;
-	while (nui > 9)
+	i = 1;
+	nui = n;
+	while (nui > (base - 1))
 	{
-		nui /= 10;
+		nui /= base;
 		i++;
 	}
 	if (!(str = (char *)malloc(sizeof(char) * (i + 1))))
 		return (NULL);
 	str[i--] = '\0';
-	nui = (n < 0) ? -n : n;
-	if (n < 0)
-		str[0] = '-';
-	while (nui > 9)
+	nui = n;
+	while (nui > (base - 1))
 	{
-		str[i--] = nui % 10 + '0';
-		nui /= 10;
+		str[i--] = ft_digit_to_char(nui % base, base, maj);
+		nui /= base;
 	}
-	str[i] = nui + '0';
+	str[i] = ft_digit_to_char(nui, base, maj);
 	return (str);
 }

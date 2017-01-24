@@ -6,7 +6,7 @@
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/15 11:22:10 by sflinois          #+#    #+#             */
-/*   Updated: 2017/01/11 10:24:51 by sflinois         ###   ########.fr       */
+/*   Updated: 2017/01/24 16:41:00 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 # define LIBFT_H
 # include <string.h>
+# include <inttypes.h>
 
 typedef struct		s_list
 {
@@ -39,6 +40,7 @@ int					ft_isprint(int c);
 int					ft_isneg(int c);
 char				*ft_itoa(int n);
 char				*ft_litoa(long int n);
+char				*ft_imttoa(intmax_t n);
 void				*ft_memalloc(size_t size);
 void				*ft_memccpy(void *dst, const void *src, int c, size_t n);
 void				*ft_memchr(const void *s, int c, size_t n);
@@ -57,6 +59,7 @@ void				ft_putstr(char const *s);
 void				ft_putstr_fd(char const *s, int fd);
 char				*ft_strcat(char *s1, const char *s2);
 char				*ft_strchr(const char *s, int c);
+char				*ft_strnochr(const char *s, int c);
 void				ft_strclr(char *s);
 int					ft_strcmp(const char *s1, const char *s2);
 char				*ft_strcpy(char *dst, const char *src);
@@ -104,6 +107,7 @@ void				ft_btree_apply_suffix(t_btree *root,
 		void (*applyf)(void *));
 char				*ft_itoa_base(unsigned int n, unsigned int base, int maj);
 char				*ft_litoa_base(unsigned long int n, unsigned int base, int maj);
+char				*ft_imttoa_base(uintmax_t n, unsigned int base, int maj);
 char				ft_digit_to_char(int d, int base, int maj);
 int					ft_printf(const char *format, ...);
 

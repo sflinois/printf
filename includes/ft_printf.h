@@ -6,7 +6,7 @@
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/10 15:24:30 by sflinois          #+#    #+#             */
-/*   Updated: 2017/01/24 12:26:50 by sflinois         ###   ########.fr       */
+/*   Updated: 2017/01/24 16:39:00 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,45 +16,39 @@
 #include <stdarg.h>
 #include <inttypes.h>
 
-# define F_SHARP = 1
-# define F_ZERO = 2
-# define F_JUSTIFY = 4
-# define F_PLUS = 8
-# define F_BLANK = 16
-
-
-typedef struct	s_expr
+typedef struct		s_expr
 {
 	unsigned char	flags;
 	unsigned int	min_width;
 	unsigned int	precision;
 	unsigned char	length;
 	char			type;	
-}				t_expr;
+}					t_expr;
 
-typedef struct	s_conv
+typedef struct		s_conv
 {
-	char		*type;
-	int			(*conv)(t_expr expr, va_list *args);
-}				t_conv;
+	char			*type;
+	int				(*conv)(t_expr expr, va_list *args);
+}					t_conv;
 
-typedef struct	s_len_modifier
+typedef struct		s_len_modifier
 {
-	char		conv;
-	int		i;
-	char		c;
-	short int	si;
-	long int	li;
-	intmax_t	im;
-	size_t		st;
-}		t_len_modifier;
+	char			type;
+	char			c;
+	short int		si;
+	int				i;
+	long int		li;
+	long long int	lli;
+	intmax_t		im;
+	size_t			st;
+}					t_len_modifier;
 
-char					*apply_min_width(char *str, t_expr expr);
-char					*apply_precision(char *str, t_expr expr);
-char					*apply_flags(char *str, t_expr expr);
-char					*apply_length(char *str, t_expr expr);
+char				*apply_min_width(char *str, t_expr expr);
+char				*apply_precision(char *str, t_expr expr);
+char				*apply_flags(char *str, t_expr expr);
+void				apply_length(intmax_t *imt, t_expr expr, va_list *args);
 
-void					new_expr(t_expr *expr);
+void				new_expr(t_expr *expr);
 int					convert_arg (t_expr expr, va_list *args);
 int					expr_pars(char **format, t_expr *expr);
 int					process_conv(va_list *args, char **format);

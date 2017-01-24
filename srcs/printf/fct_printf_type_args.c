@@ -6,7 +6,7 @@
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/09 11:03:01 by sflinois          #+#    #+#             */
-/*   Updated: 2017/01/24 12:29:50 by sflinois         ###   ########.fr       */
+/*   Updated: 2017/01/24 16:09:20 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,22 +19,25 @@
 int			conv_int_arg(t_expr expr, va_list *args)
 {
 	char		*disp;
-	t_len_modifier	nb;
+	intmax_t	imt;
 	int		ret;
 
-	nb.i = va_arg(*args, int);
+	//nb.type = init_len_modifier(&nb, args);
+	apply_length(&imt, expr, args);
 	if (expr.type == 'd' || expr.type == 'i')
-		disp = ft_itoa(nb.i);
+		disp = ft_imttoa(imt);
 	if (expr.type == 'b')
-		disp = ft_itoa_base((unsigned int)nb.i, 2, 0);
+		disp = ft_imttoa_base(imt, 2, 0);
 	if (expr.type == 'o')
-		disp = ft_itoa_base((unsigned int)nb.i, 8, 0);
+		disp = ft_imttoa_base(imt, 8, 0);
 	if (expr.type == 'u')
-		disp = ft_itoa_base((unsigned int)nb.i, 10, 0);
+		disp = ft_imttoa_base(imt, 10, 0);
 	if (expr.type == 'x')
-		disp = ft_itoa_base((unsigned int)nb.i, 16, 0);
+		disp = ft_imttoa_base(imt, 16, 0);
 	if (expr.type == 'X')
-		disp = ft_itoa_base((unsigned int)nb.i, 16, 1);
+		disp = ft_imttoa_base(imt, 16, 1);
+	disp = apply_precision(disp, expr);
+	disp = apply_flags(disp, expr);
 	disp = apply_min_width(disp, expr);
 	ft_putstr(disp);
 	ret = ft_strlen(disp);
