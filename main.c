@@ -18,7 +18,7 @@ int		main(void)
 {
 
 	printf("%d\n", 42);
-	printf("%0d\n", 42);
+	printf("%.3d\n", 42);
 //	printf(" %-10d \n", 10);
 //	printf(" %d \n", 10);
 //	printf(" %-#10x \n", 10);

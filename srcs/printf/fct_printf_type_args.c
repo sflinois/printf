@@ -17,23 +17,23 @@
 
 int			conv_int_arg(t_expr expr, va_list *args)
 {
-	char	*disp;
-	int		i;
+	char		*disp;
+	t_len_modifier	nb;
 	int		ret;
 
-	i = va_arg(*args, int);
+	nb.i = va_arg(*args, int);
 	if (expr.type == 'd' || expr.type == 'i')
-		disp = ft_itoa(i);
+		disp = ft_itoa(nb.i);
 	if (expr.type == 'b')
-		disp = ft_itoa_base((unsigned int)i, 2, 0);
+		disp = ft_itoa_base((unsigned int)nb.i, 2, 0);
 	if (expr.type == 'o')
-		disp = ft_itoa_base((unsigned int)i, 8, 0);
+		disp = ft_itoa_base((unsigned int)nb.i, 8, 0);
 	if (expr.type == 'u')
-		disp = ft_itoa_base((unsigned int)i, 10, 0);
+		disp = ft_itoa_base((unsigned int)nb.i, 10, 0);
 	if (expr.type == 'x')
-		disp = ft_itoa_base((unsigned int)i, 16, 0);
+		disp = ft_itoa_base((unsigned int)nb.i, 16, 0);
 	if (expr.type == 'X')
-		disp = ft_itoa_base((unsigned int)i, 16, 1);
+		disp = ft_itoa_base((unsigned int)nb.i, 16, 1);
 	disp = apply_min_width(disp, expr.min_width);
 	ft_putstr(disp);
 	ret = ft_strlen(disp);

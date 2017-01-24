@@ -37,6 +37,17 @@ typedef struct	s_conv
 	int			(*conv)(t_expr expr, va_list *args);
 }				t_conv;
 
+typedef struct	s_len_modifier
+{
+	char		conv;
+	int		i;
+	char		c;
+	short int	si;
+	long int	li;
+	intmax_t	im;
+	size_t		st;
+}		t_len_modifier;
+
 char					*apply_min_width(char *str, t_expr expr);
 char					*apply_precision(char *str, t_expr expr);
 char					*apply_flags(char *str, t_expr expr);
