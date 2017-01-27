@@ -6,7 +6,7 @@
 #    By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/10 11:48:48 by sflinois          #+#    #+#              #
-#    Updated: 2017/01/24 16:41:27 by sflinois         ###   ########.fr        #
+#    Updated: 2017/01/27 13:43:21 by sflinois         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ SRC_NAME = ft_btree_create_node.c ft_btree_apply_prefix.c \
 		ft_putchar.c ft_putchar_fd.c ft_putendl.c \
 		ft_putendl_fd.c ft_putnbr.c ft_putnbr_fd.c \
 		ft_putstr.c ft_putstr_fd.c ft_strnochr.c \
-		ft_itoa.c ft_strcat.c ft_strchr.c \
+		ft_itoa.c ft_strcat.c ft_strchr.c ft_strrev.c \
 		ft_strclr.c ft_strcmp.c ft_strcpy.c \
 		ft_strdel.c ft_strdup.c ft_strndup.c \
 		ft_strequ.c ft_striter.c ft_striteri.c \

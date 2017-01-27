@@ -6,7 +6,7 @@
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/09 11:03:01 by sflinois          #+#    #+#             */
-/*   Updated: 2017/01/24 16:09:20 by sflinois         ###   ########.fr       */
+/*   Updated: 2017/01/27 16:42:50 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ int			conv_int_arg(t_expr expr, va_list *args)
 	if (expr.type == 'X')
 		disp = ft_imttoa_base(imt, 16, 1);
 	disp = apply_precision(disp, expr);
-	disp = apply_flags(disp, expr);
 	disp = apply_min_width(disp, expr);
+	disp = apply_flags(disp, expr);
 	ft_putstr(disp);
 	ret = ft_strlen(disp);
 	free(disp);
@@ -89,7 +89,7 @@ int			conv_s_arg(t_expr expr, va_list *args)
 		ft_putstr(s);
 	if (expr.type == 'S')
 		ft_putstr(s);
-	s = apply_min_width(s, expr);
+	//s = apply_min_width(s, expr);
 	ret = ft_strlen(s);
 	return (ret);
 }

@@ -6,7 +6,7 @@
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/15 11:22:10 by sflinois          #+#    #+#             */
-/*   Updated: 2017/01/24 16:41:00 by sflinois         ###   ########.fr       */
+/*   Updated: 2017/01/27 13:42:56 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,7 @@ char				*ft_itoa_base(unsigned int n, unsigned int base, int maj);
 char				*ft_litoa_base(unsigned long int n, unsigned int base, int maj);
 char				*ft_imttoa_base(uintmax_t n, unsigned int base, int maj);
 char				ft_digit_to_char(int d, int base, int maj);
+void				ft_strrev(char *str);
 int					ft_printf(const char *format, ...);
 
 #endif
