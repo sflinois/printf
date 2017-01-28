@@ -6,7 +6,7 @@
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/24 16:38:09 by sflinois          #+#    #+#             */
-/*   Updated: 2017/01/27 16:44:05 by sflinois         ###   ########.fr       */
+/*   Updated: 2017/01/28 17:23:14 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,52 +19,55 @@ char	*applyflag_sharp(char *str, t_expr expr)
 	char	*ret;
 	int		hexa;
 	int		i;
-	
-	if (ft_strchr("oxX", (int)expr.type))
+
+	if (!ft_strchr("oxX", (int)expr.type))
+		return (str);
+	i = 0;
+	while (str[i] == ' ' || str[i] == '0')
+		i++;
+	if (!str[i])
+		return (str);
+	hexa = 0;
+	if (ft_strchr("xX", (int)expr.type))
+		hexa = 1;
+	if (i >= (1 + hexa))
 	{
-		i = 0;
-		while (str[i] == ' ' || str[i] == '0')
-			i++;
-		if (!str[i])
-			return (str);
-		hexa = 0;
-		if (ft_strchr("xX", (int)expr.type))
-			hexa = 1;
-		if (i >= (1 + hexa))
-		{
-			ret = str;
-			i--;
-			if (*str == '0')
-				i = 0 + hexa;
-			ret[i] = 'x';
-			if (expr.type == 'X')
-				ret[i] = 'X';
-			ret[i - hexa] = '0';
-			return (ret);
-		}
-		ret = ft_strnew(ft_strlen(str) + 1 + hexa);
-		*(ret + hexa) = 'x';
+		ret = str;
+		i--;
+		if (*str == '0')
+			i = 0 + hexa;
+		ret[i] = 'x';
 		if (expr.type == 'X')
-			*(ret + hexa) = 'X';
-		*ret = '0';
-		ret = ft_strcat(ret, str + i);
-		free(str);
+			ret[i] = 'X';
+		ret[i - hexa] = '0';
 		return (ret);
 	}
-	return (str);
+	ret = ft_strnew(ft_strlen(str) + 1 + hexa);
+	*(ret + hexa) = 'x';
+	if (expr.type == 'X')
+		*(ret + hexa) = 'X';
+	*ret = '0';
+	ret = ft_strcat(ret, str + i);
+	free(str);
+	return (ret);
 }
 
 char	*applyflag_zero(char *str, t_expr expr)
 {
 	int		i;
 
-	if (expr.flags & 4)
+	if (expr.flags & 4 || !ft_strchr("diouxX", (int)expr.type))
 		return (str);
 	i = 0;
 	while (str[i])
 	{
 		if (str[i] == ' ')
 			str[i] = '0';
+		if (str[i] == '-' && i > 0)
+		{
+			str[0] = '-';
+			str[i] = '0';
+		}
 		i++;
 	}
 	return (str);
@@ -76,7 +79,7 @@ char	*applyflag_minus(char *str)
 	char	*tmp_str;
 	char	*tmp_space;
 
-	
+
 	i = 0;
 	while (str[i] == ' ')
 		i++;
@@ -84,6 +87,44 @@ char	*applyflag_minus(char *str)
 	tmp_space = ft_strndup(str, i);
 	free(str);
 	str = ft_strjoin(tmp_str, tmp_space);
+	free(tmp_str);
+	free(tmp_space);
+	return (str);
+}
+
+char	*applyflag_spaceplus(char *str, t_expr expr)
+{
+	char	*ret;
+	int		len;
+	int		i;
+	char	c;
+
+	if (!ft_strchr("di", (int)expr.type))
+		return (str);
+	c = expr.flags & 8 ? '+' : ' ';
+	i = 0;
+	len = -1;
+	while (str[i])
+	{
+		i++;
+		if (str[i] == ' ')
+			len = i;
+	}
+	if (len == -1 && *str != '-')
+	{
+		ret = ft_strnew(ft_strlen(str) + 1);
+		*ret = c;
+		ret = ft_strcat(ret, str);
+		free(str);
+		return (ret);
+	}
+	if (len == (int)ft_strlen(str) && str[0] != '-')
+	{
+		ft_memmove(str + 1, str, len - 1);
+		str[0] = c;
+	}
+	else if (str[len - 1] != '-')
+		str[len - 1] = c;
 	return (str);
 }
 
@@ -96,5 +137,7 @@ char	*apply_flags(char *str, t_expr expr)
 		str = applyflag_sharp(str, expr);
 	if (expr.flags & 4)
 		str = applyflag_minus(str);
+	if (expr.flags & 8 || expr.flags & 16)
+		str = applyflag_spaceplus(str, expr);
 	return (str);
 }

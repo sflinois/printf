@@ -6,7 +6,7 @@
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/10 12:10:17 by sflinois          #+#    #+#             */
-/*   Updated: 2017/01/27 16:14:42 by sflinois         ###   ########.fr       */
+/*   Updated: 2017/01/28 16:57:16 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,13 @@
 
 int		main(void)
 {
-	long long int	i = 42;
-	ft_putstr("printf : \n");
-	printf("% +10d\n", i);
-	printf("% -10d\n", i);
-	printf("%-10d\n", i);
-	printf("%# -+10d\n", i);
+	int		i = 4242;
+	printf("\"%-+10.5d\"\n", i);
+	printf("\"%- 10.5d\"\n", i);
+	printf("\"%- 10.5d\"\n", i);
+	printf("\"%+10.5d\"\n", i);
+	printf("\"% 10.5d\"\n", i);
+	printf("\"% d\"\n", i);
 	//ft_printf("%u\n", i);
 	//ft_printf("%X\n", i);
 

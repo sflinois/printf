@@ -6,7 +6,7 @@
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/09 11:03:01 by sflinois          #+#    #+#             */
-/*   Updated: 2017/01/27 16:44:02 by sflinois         ###   ########.fr       */
+/*   Updated: 2017/01/28 17:23:26 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ int			conv_dou_arg(t_expr expr, va_list *args)
 	if (expr.type == 'U')
 		disp = ft_litoa_base((unsigned long int)i, 10, 0);
 	disp = apply_min_width(disp, expr);
+	disp = apply_flags(disp, expr);
 	ft_putstr(disp);
 	ret = ft_strlen(disp);
 	free(disp);
@@ -68,36 +69,41 @@ int			conv_dou_arg(t_expr expr, va_list *args)
 int			conv_c_arg(t_expr expr, va_list *args)
 {
 	int		c;
+	char	*disp;
 	int		ret;
 
 	c = va_arg(*args, int);
-	if (expr.type == 'c')
-		ft_putchar((unsigned char)c);
-	if (expr.type == 'C')
-		ft_putchar((unsigned char)c);
-	ret = 1;
-	return (ret);
+	disp = ft_strnew(1);
+	disp[0] = c;
+	disp = apply_min_width(disp, expr);
+	disp = apply_flags(disp, expr);
+	ret = ft_strlen(disp);
+	if (c == 0 && expr.min_width > 1)
+		disp[ft_strlen(disp) - 1] = 0;
+	ft_putstr(disp);
+	free(disp);
+	return (ret == 0 ? 1 : ret);
 }
 
 int			conv_s_arg(t_expr expr, va_list *args)
 {
 	char	*s;
+	char	*disp;
 	int		ret;
 
 	s = va_arg(*args, char*);
-	if (expr.type == 's')
-		ft_putstr(s);
-	if (expr.type == 'S')
-		ft_putstr(s);
-	//s = apply_min_width(s, expr);
-	ret = ft_strlen(s);
-	return (ret);
+	disp = ft_strdup(s);
+	disp = apply_min_width(disp, expr);
+	disp = apply_flags(disp, expr);
+	ft_putstr(disp);
+	ret = ft_strlen(disp);
+	return (ret == 0 && !s ? 1 : ret);
 }
 
 int			conv_p_arg(t_expr expr, va_list *args)
 {
 	char	*disp;
-	void	*p	;
+	void	*p;
 	int		ret;
 
 	p = va_arg(*args, void*);
@@ -105,6 +111,7 @@ int			conv_p_arg(t_expr expr, va_list *args)
 		;
 	disp = ft_itoa_base((int)p, 16, 0);
 	disp = apply_min_width(disp, expr);
+	disp = apply_flags(disp, expr);
 	ft_putstr(disp);
 	ret = ft_strlen(disp);
 	free(disp);
@@ -113,11 +120,16 @@ int			conv_p_arg(t_expr expr, va_list *args)
 
 int		conv_pct_arg(t_expr expr, va_list *args)
 {
-	int		i;
+	char	*disp;
 	int		ret;
-	
-	i = va_arg(*args, int);
-	ft_putchar(expr.type);
-	ret = 1;
+	va_list	warning;
+
+	va_copy(warning, *args);
+	disp = ft_strdup("%");
+	disp = apply_min_width(disp, expr);
+	disp = apply_flags(disp, expr);
+	ft_putstr(disp);
+	ret = ft_strlen(disp);
+	free(disp);
 	return (ret);
 }
