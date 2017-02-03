@@ -6,7 +6,7 @@
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/24 16:38:09 by sflinois          #+#    #+#             */
-/*   Updated: 2017/01/28 17:23:14 by sflinois         ###   ########.fr       */
+/*   Updated: 2017/02/03 18:28:57 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ char	*applyflag_zero(char *str, t_expr expr)
 	if (expr.flags & 4 || !ft_strchr("diouxX", (int)expr.type))
 		return (str);
 	i = 0;
-	while (str[i])
+	while (str[i] && expr.precision == -1)
 	{
 		if (str[i] == ' ')
 			str[i] = '0';
@@ -92,40 +92,63 @@ char	*applyflag_minus(char *str)
 	return (str);
 }
 
+/*
+**	This flag, compare to the others is used
+**	int conv_int_arg !
+**	This function will only work on a string that contain a
+**	number without modifications !
+*/
+
 char	*applyflag_spaceplus(char *str, t_expr expr)
 {
 	char	*ret;
-	int		len;
+	int		nb;
 	int		i;
 	char	c;
 
 	if (!ft_strchr("di", (int)expr.type))
 		return (str);
-	c = expr.flags & 8 ? '+' : ' ';
 	i = 0;
-	len = -1;
-	while (str[i])
+	c = expr.flags & 8 ? '+' : ' ';
+	if (str[0] == '0' && !str[1])
 	{
-		i++;
-		if (str[i] == ' ')
-			len = i;
-	}
-	if (len == -1 && *str != '-')
-	{
-		ret = ft_strnew(ft_strlen(str) + 1);
+		ret = ft_strdup("+0");
 		*ret = c;
-		ret = ft_strcat(ret, str);
-		free(str);
 		return (ret);
 	}
-	if (len == (int)ft_strlen(str) && str[0] != '-')
+	while (str[i] == ' ' || str[i] == '0')
+		i++;
+	nb = i;
+	if (*str == '-')
+		return (str);
+	while (ft_isdigit(str[i]))
+		i++;
+	while (i - nb <= expr.precision && nb > 0)
+		nb--;
+	ret = str;
+	if (nb == 0)
 	{
-		ft_memmove(str + 1, str, len - 1);
+		if (str[i])
+		{
+			ft_memmove(str + 1, str, i);
+			str[0] = c;
+		}
+		else
+		{
+			ret = ft_strjoin(" ", str);
+			*ret = c;
+		}
+		return (ret);
+	}
+	if (str[nb - 1] == '0')
+	{
 		str[0] = c;
 	}
-	else if (str[len - 1] != '-')
-		str[len - 1] = c;
-	return (str);
+	else
+	{
+		str[nb] = c;
+	}
+	return (ret);
 }
 
 char	*apply_flags(char *str, t_expr expr)

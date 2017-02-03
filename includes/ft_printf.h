@@ -6,7 +6,7 @@
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/10 15:24:30 by sflinois          #+#    #+#             */
-/*   Updated: 2017/01/28 15:07:31 by sflinois         ###   ########.fr       */
+/*   Updated: 2017/02/03 16:43:33 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ typedef struct		s_expr
 {
 	unsigned char	flags;
 	unsigned int	min_width;
-	unsigned int	precision;
+	int				precision;
 	unsigned char	length;
 	char			type;	
 }					t_expr;
@@ -45,6 +45,9 @@ typedef struct		s_len_modifier
 
 char				*apply_min_width(char *str, t_expr expr);
 char				*apply_precision(char *str, t_expr expr);
+
+char				*applyflag_spaceplus(char *str, t_expr expr);
+
 char				*apply_flags(char *str, t_expr expr);
 void				apply_length(intmax_t *imt, t_expr expr, va_list *args);
 

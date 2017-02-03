@@ -6,7 +6,7 @@
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 12:41:55 by sflinois          #+#    #+#             */
-/*   Updated: 2017/01/28 17:23:24 by sflinois         ###   ########.fr       */
+/*   Updated: 2017/02/03 12:09:24 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,10 @@ int	expr_pars(char **format, t_expr *expr)
 	}
 
 	//precision
-	expr->precision = 0;
+	expr->precision = -1;
 	if (**format && **format == '.')
 	{
+		expr->precision = 0;
 		(*format)++;
 		while (**format && ft_isdigit((int)**format))
 		{
