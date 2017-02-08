@@ -17,19 +17,41 @@
 
 void	apply_length(intmax_t *imt, t_expr expr, va_list *args)
 {
-	*imt = va_arg(*args, intmax_t);
-	if (expr.length == 0)
+	char	is_uns;
+
+	is_uns = 0;
+	if (ft_strchr("ouxX", expr.type))
+		is_uns = 1;
+	if (is_uns)
 	{
-		*imt = (int)*imt;
+		*imt = va_arg(*args, uintmax_t);
+		if (expr.length == 0)
+			*imt = (unsigned int)*imt;
+		else if (expr.length == 1)
+			*imt = (unsigned char)*imt;
+		else if (expr.length == 2)
+			*imt = (unsigned short int)*imt;
+		else if (expr.length == 4)
+			*imt = (unsigned long int)*imt;
+		else if (expr.length == 8)
+			*imt = (unsigned long long int)*imt;
+		else if (expr.length == 32)
+			*imt = (size_t)*imt;
 	}
-	else if (expr.length == 1)
-		*imt = (char)*imt;
-	else if (expr.length == 2)
-		*imt = (short int)*imt;
-	else if (expr.length == 4)
-		*imt = (long int)*imt;
-	else if (expr.length == 8)
-		*imt = (long long int)*imt;
-	else if (expr.length == 16)
-		*imt = (size_t)*imt;
+	else if (!is_uns)
+	{
+		*imt = va_arg(*args, intmax_t);
+		if (expr.length == 0)
+			*imt = (int)*imt;
+		else if (expr.length == 1)
+			*imt = (char)*imt;
+		else if (expr.length == 2)
+			*imt = (short int)*imt;
+		else if (expr.length == 4)
+			*imt = (long int)*imt;
+		else if (expr.length == 8)
+			*imt = (long long int)*imt;
+		else if (expr.length == 32)
+			*imt = (size_t)*imt;
+	}
 }

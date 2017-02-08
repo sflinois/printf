@@ -12,19 +12,26 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <inttypes.h>
 #include "includes/libft.h"
 
 int		main(void)
 {
-	int		i = -42;
-	printf("%0+5d\n", i);
-	printf("% 10.5d\n", i);
-	printf("%+10.5d\n", i);
-	printf("%-+10.5d\n", i);
-	ft_printf("%0+5d\n", i);
-	ft_printf("% 10.5d\n", i);
-	ft_printf("%+10.5d\n", i);
-	ft_printf("%-+10.5d\n", i);
+	uintmax_t		i = -1;
+	printf("%o\n", i);
+	printf("%hho\n", i);
+	printf("%ho\n", i);
+	printf("%lo\n", i);
+	printf("%llo\n", i);
+	printf("%jo\n", i);
+	printf("%zo\n\n", i);
+	ft_printf("%o\n", i);
+	ft_printf("%hho\n", i);
+	ft_printf("%ho\n", i);
+	ft_printf("%lo\n", i);
+	ft_printf("%llo\n", i);
+	ft_printf("%jo\n", i);
+	ft_printf("%zo\n", i);
 /*
 	printf("\"%d\" : ", i);
 	printf("\"d\"\n", i);

@@ -92,6 +92,11 @@ int			conv_s_arg(t_expr expr, va_list *args)
 	int		ret;
 
 	s = va_arg(*args, char*);
+	if (s == NULL)
+	{
+		ft_putstr("(null)");
+		return (6);
+	}
 	disp = ft_strdup(s);
 	disp = apply_precision(disp, expr);
 	disp = apply_min_width(disp, expr);

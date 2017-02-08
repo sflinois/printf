@@ -15,7 +15,7 @@
 #include <string.h>
 #include <inttypes.h>
 
-/*
+
 char	*ft_imttoa_base(uintmax_t n, unsigned int base, int maj)
 {
 	uintmax_t	nui;
@@ -41,7 +41,8 @@ char	*ft_imttoa_base(uintmax_t n, unsigned int base, int maj)
 	str[i] = ft_digit_to_char(nui, base, maj);
 	return (str);
 }
-*/
+
+/*
 char	*ft_imttoa_base(uintmax_t n, unsigned int base, int maj)
 {
 	uintmax_t		nui;
@@ -63,3 +64,4 @@ char	*ft_imttoa_base(uintmax_t n, unsigned int base, int maj)
 	ft_strrev(str);
 	return (ft_strdup(str));
 }
+*/

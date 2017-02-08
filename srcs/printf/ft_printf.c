@@ -100,10 +100,10 @@ int	expr_pars(char **format, t_expr *expr)
 		}
 		if (**format == 'l')
 		{
-			expr->length = 8;
+			expr->length = 4;
 			if (*((*format) + 1) == 'l')
 			{
-				expr->length = 4;
+				expr->length = 8;
 				(*format)++;
 			}
 		}	
