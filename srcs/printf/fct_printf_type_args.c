@@ -6,7 +6,7 @@
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/09 11:03:01 by sflinois          #+#    #+#             */
-/*   Updated: 2017/02/09 14:49:05 by sflinois         ###   ########.fr       */
+/*   Updated: 2017/02/09 15:21:31 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,12 @@ int			conv_dou_arg(t_expr expr, va_list *args)
 	
 	i = va_arg(*args, long int);
 	if (expr.type == 'D')
-		disp = ft_litoa(i);
+		disp = ft_imttoa(i);
 	if (expr.type == 'O')
-		disp = ft_litoa_base((unsigned long int)i, 8, 0);
+		disp = ft_imttoa_base(i, 8, 0);
 	if (expr.type == 'U')
-		disp = ft_litoa_base((unsigned long int)i, 10, 0);
+		disp = ft_imttoa_base(i, 10, 0);
+	disp = apply_precision(disp, expr);
 	disp = apply_min_width(disp, expr);
 	disp = apply_flags(disp, expr);
 	ft_putstr(disp);

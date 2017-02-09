@@ -6,7 +6,7 @@
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/24 16:38:09 by sflinois          #+#    #+#             */
-/*   Updated: 2017/02/09 14:49:08 by sflinois         ###   ########.fr       */
+/*   Updated: 2017/02/09 15:12:00 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,18 +112,21 @@ char	*applyflag_spaceplus(char *str, t_expr expr)
 	c = expr.flags & 8 ? '+' : ' ';
 	if (str[0] == '0' && !str[1])
 	{
+		free(str);
 		ret = ft_strdup("+0");
 		*ret = c;
 		return (ret);
 	}
-	while (str[i] == ' ' || str[i] == '0')
+	while (str[i] == '0')
+		i++;
+	while (str[i] == ' ')
 		i++;
 	nb = i;
-	if (*str == '-')
+	if (str[i] == '-')
 		return (str);
 	while (ft_isdigit(str[i]))
 		i++;
-	while (i - nb <= expr.precision && nb > 0)
+	while (i - nb < expr.precision && nb > 0)
 		nb--;
 	ret = str;
 	if (nb == 0)
@@ -136,18 +139,15 @@ char	*applyflag_spaceplus(char *str, t_expr expr)
 		else
 		{
 			ret = ft_strjoin(" ", str);
+			free(str);
 			*ret = c;
 		}
 		return (ret);
 	}
 	if (str[nb - 1] == '0')
-	{
 		str[0] = c;
-	}
 	else
-	{
-		str[nb] = c;
-	}
+		str[nb - 1] = c;
 	return (ret);
 }
 
