@@ -6,7 +6,7 @@
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 12:41:55 by sflinois          #+#    #+#             */
-/*   Updated: 2017/02/03 12:09:24 by sflinois         ###   ########.fr       */
+/*   Updated: 2017/02/09 14:49:01 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,77 +41,83 @@ int	convert_arg (t_expr expr, va_list *args)
 int	expr_pars(char **format, t_expr *expr)
 {
 	char	*c;
-	
-	//flags
+
+
 	expr->flags = 0;
-	while (**format && (c = ft_strchr("#0-+ ", (int)**format)))
-	{
-		if (*c == '#')
-			expr->flags |= 1;
-		if (*c == '0')
-			expr->flags |= 2;
-		if (*c == '-')
-			expr->flags |= 4;
-		if (*c == '+')
-			expr->flags |= 8;
-		if (*c == ' ')
-			expr->flags |= 16;
-		(*format)++;
-	}
-
-	//min_width
 	expr->min_width = 0;
-	while (**format && ft_isdigit((int)**format))
-	{
-		if (expr->min_width != 0)
-			expr->min_width *= 10;
-		expr->min_width += (int)**format - '0';
-		(*format)++;
-	}
-
-	//precision
 	expr->precision = -1;
-	if (**format && **format == '.')
+	expr->length = 0;
+	while (**format && ft_strchr("#0-+ 123456789.hljz", (int)**format))
 	{
-		expr->precision = 0;
-		(*format)++;
-		while (**format && ft_isdigit((int)**format))
+		//flags
+		while (**format && (c = ft_strchr("#0-+ ", (int)**format)))
 		{
-			if (expr->precision != 0)
-				expr->precision *= 10;
-			expr->precision += (int)**format - '0';
+			if (*c == '#')
+				expr->flags |= 1;
+			if (*c == '0')
+				expr->flags |= 2;
+			if (*c == '-')
+				expr->flags |= 4;
+			if (*c == '+')
+				expr->flags |= 8;
+			if (*c == ' ')
+				expr->flags |= 16;
 			(*format)++;
 		}
-	}
 
-	//length
-	expr->length = 0;
-	if (**format && (ft_strchr("hljz", (int)**format)))
-	{
-		if (**format == 'h')
+		//min_width
+		while (**format && ft_isdigit((int)**format))
 		{
-			if (*((*format) + 1) == 'h')
-			{
-				expr->length = 1;
-				(*format)++;
-			}
-			else
-				expr->length = 2;
+			if (expr->min_width != 0)
+				expr->min_width *= 10;
+			expr->min_width += (int)**format - '0';
+			(*format)++;
 		}
-		if (**format == 'l')
+
+		//precision
+		if (**format && **format == '.')
 		{
-			expr->length = 4;
-			if (*((*format) + 1) == 'l')
+			expr->precision = 0;
+			(*format)++;
+			while (**format && ft_isdigit((int)**format))
 			{
-				expr->length = 8;
+				if (expr->precision != 0)
+					expr->precision *= 10;
+				expr->precision += (int)**format - '0';
 				(*format)++;
 			}
-		}	
-		if (**format == 'j')
-			expr->length = 16;
-		if (**format == 'z')
-			expr->length = 32;
-		(*format)++;
+		}
+
+		//length
+		if (**format && (ft_strchr("hljz", (int)**format)))
+		{
+			if (**format == 'h' && expr->length < 2)
+			{
+				if (*((*format) + 1) == 'h')
+				{
+					expr->length = expr->length < 1 ? 1 : expr->length;
+					(*format)++;
+				}
+				else
+					expr->length = expr->length < 2 ? 2 : expr->length;
+			}
+			if (**format == 'l')
+			{
+				if (expr->length < 4)
+					expr->length = expr->length < 4 ? 4 : expr->length;
+				if (*((*format) + 1) == 'l')
+				{
+					expr->length = expr->length < 8 ? 8 : expr->length;
+					(*format)++;
+				}
+			}	
+			if (**format == 'j')
+				expr->length = expr->length < 16 ? 16 : expr->length;
+			if (**format == 'z')
+				expr->length = expr->length < 32 ? 32 : expr->length;
+			(*format)++;
+		}
+		//(*format)++;
 	}
 	return (1);
 }
@@ -128,27 +134,20 @@ int	process_conv(va_list *args, char **format)
 		(*format)++;
 		if (expr_pars(format, &expr) == -1)
 			return (-1);
-		while (**format && !ft_strchr("sSpdDioOuUxXcC%", (int)**format))
+		if (**format && ft_strchr("sSpdDioOuUxXcC%", (int)**format))
+		{
+			expr.type = **format;
+			ret = convert_arg(expr, args);
+			if (**format)
+				(*format)++;
+		}
+		else if (**format)
+		{
+			ft_putchar(**format);
+			ret = 1;
 			(*format)++;
-		expr.type = **format;
-		ret = convert_arg(expr, args);
-		if (**format)
-			(*format)++;
+		}
 	}
-/*	ft_putchar('\n');
-	ft_putstr("flags : ");
-	ft_putnbr(expr.flags);
-	ft_putchar('\n');
-	ft_putstr("min_width : ");
-	ft_putnbr(expr.min_width);
-	ft_putchar('\n');
-	ft_putstr("precision : ");
-	ft_putnbr(expr.precision);
-	ft_putchar('\n');
-	ft_putstr("length : ");
-	ft_putnbr(expr.length);
-	ft_putchar('\n');
-*/
 	return (ret);
 }
 
