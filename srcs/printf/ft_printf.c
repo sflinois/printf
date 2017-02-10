@@ -6,7 +6,7 @@
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 12:41:55 by sflinois          #+#    #+#             */
-/*   Updated: 2017/02/09 18:09:20 by sflinois         ###   ########.fr       */
+/*   Updated: 2017/02/10 14:11:11 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,6 @@ int	expr_pars(char **format, t_expr *expr)
 				(*format)++;
 			}
 		}
-
 		//length
 		if (**format && (ft_strchr("hljz", (int)**format)))
 		{

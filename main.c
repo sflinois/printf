@@ -6,7 +6,7 @@
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/10 12:10:17 by sflinois          #+#    #+#             */
-/*   Updated: 2017/02/09 17:22:50 by sflinois         ###   ########.fr       */
+/*   Updated: 2017/02/10 15:44:46 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,15 @@
 
 int		main(void)
 {
+	wint_t			c2;
+
+	setlocale(LC_ALL, "");
+	c2 = L'❤';
+	ft_printf("%C\n",L'❤');
+	printf("%C\n",L'❤');
+
+	// -+0 #123456789.123456789l ll h hh j z
+/*
 	setlocale(LC_ALL, "");
 	unsigned char	c;
 	wint_t			c2;
@@ -46,7 +55,7 @@ int		main(void)
 
 	printf("%ls", L"❤✓☀★☂♞☯☭☢€☎∞❄♫₽\n");
 	printf("%S", L"❤✓☀★☂♞☯☭☢€☎∞❄♫₽\n");
-
+*/
 	/*
 	   uintmax_t		i = -1;
 	   printf("%o\n", i);

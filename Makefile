@@ -6,7 +6,7 @@
 #    By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/10 11:48:48 by sflinois          #+#    #+#              #
-#    Updated: 2017/01/27 13:43:21 by sflinois         ###   ########.fr        #
+#    Updated: 2017/02/10 15:22:46 by sflinois         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,8 @@ SRC_NAME = ft_btree_create_node.c ft_btree_apply_prefix.c \
 		ft_strsplit.c ft_strstr.c ft_strsub.c \
 		ft_strtrim.c ft_tolower.c ft_toupper.c \
 		ft_itoa_base.c ft_digit_to_char.c ft_litoa_base.c \
-		ft_litoa.c ft_imttoa.c ft_imttoa_base.c
+		ft_litoa.c ft_imttoa.c ft_imttoa_base.c \
+		ft_retwchar.c
 		
 S_PRINTF_PATH = $(SRC_PATH)/printf
 S_PRINTF_NAME = ft_printf.c fct_printf_type_args.c fct_expr.c \
