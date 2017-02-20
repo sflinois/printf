@@ -20,7 +20,7 @@ char	*applyflag_sharp(char *str, t_expr expr)
 	int		hexa;
 	int		i;
 
-	if (!ft_strchr("oxX", (int)expr.type))
+	if (!ft_strchr("oxXp", (int)expr.type))
 		return (str);
 	i = 0;
 	while (str[i] == ' ' || str[i] == '0')
@@ -28,7 +28,7 @@ char	*applyflag_sharp(char *str, t_expr expr)
 	if (!str[i])
 		return (str);
 	hexa = 0;
-	if (ft_strchr("xX", (int)expr.type))
+	if (ft_strchr("xXp", (int)expr.type))
 		hexa = 1;
 	if (i >= (1 + hexa))
 	{

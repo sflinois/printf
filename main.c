@@ -20,13 +20,30 @@
 
 int		main(void)
 {
+	int	i;
+	unsigned long	l;
+	char	*str;
+
+	printf("%p\n", &i);
+	ft_printf("%p\n", &i);
+	printf("%p\n", &l);
+	ft_printf("%p\n", &l);
+	printf("%p\n", &str);
+	ft_printf("%p\n", &str);
+	printf("%p\n", &strlen);
+	ft_printf("%p\n", &strlen);
+	printf("%p\n", 0);
+	ft_printf("%p\n", 0);
+
+
+/*
 	wint_t			c2;
 
 	setlocale(LC_ALL, "");
 	c2 = L'❤';
 	ft_printf("%C\n",L'❤');
 	printf("%C\n",L'❤');
-
+*/
 	// -+0 #123456789.123456789l ll h hh j z
 /*
 	setlocale(LC_ALL, "");

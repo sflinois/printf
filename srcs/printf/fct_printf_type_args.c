@@ -125,9 +125,7 @@ int			conv_p_arg(t_expr expr, va_list *args)
 	int		ret;
 
 	p = va_arg(*args, void*);
-	if (expr.type == 'p')
-		;
-	disp = ft_itoa_base((int)p, 16, 0);
+	disp = ft_itoa_base((unsigned int)p, 16, 0);
 	disp = apply_min_width(disp, expr);
 	disp = apply_flags(disp, expr);
 	ft_putstr(disp);
