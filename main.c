@@ -6,7 +6,7 @@
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/10 12:10:17 by sflinois          #+#    #+#             */
-/*   Updated: 2017/02/10 15:44:46 by sflinois         ###   ########.fr       */
+/*   Updated: 2017/02/21 16:40:57 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,11 @@
 
 int		main(void)
 {
-	int	i;
+	ft_printf("%ls, %ls", L"ÊM-^ZM-^VÁM-^BM-^I", L"ŸM-^Dÿ≠ŸM-^E ÿÆŸM-^Fÿ≤ŸM-ÿ±");
+	//printf("%lc", L'Ê');
+
+
+/*	int	i;
 	unsigned long	l;
 	char	*str;
 
@@ -34,7 +38,7 @@ int		main(void)
 	ft_printf("%p\n", &strlen);
 	printf("%p\n", 0);
 	ft_printf("%p\n", 0);
-
+*/
 
 /*
 	wint_t			c2;

@@ -1,40 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strsplit_first.c                                :+:      :+:    :+:   */
+/*   ft_retwstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/20 11:52:55 by sflinois          #+#    #+#             */
-/*   Updated: 2017/02/21 15:53:26 by sflinois         ###   ########.fr       */
+/*   Created: 2017/02/21 15:57:11 by sflinois          #+#    #+#             */
+/*   Updated: 2017/02/21 16:07:14 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libft.h"
 #include <stdlib.h>
+#include <locale.h>
+#include <wchar.h>
+#include "../includes/libft.h"
 
-char	*ft_strsplit_first(char **str, char c)
+char	*ft_retwstr(wchar_t *wstr)
 {
-	int		i;
 	char	*ret;
 	char	*tmp;
+	char	*tmp2;
 
-	i = 0;
-	if (!str || !(*str))
+	if (!wstr)
 		return (NULL);
-	while ((*str)[i] &&(*str)[i] != c)
-		i++;
-	if ((*str)[i])
+	ret = ft_strdup("");
+	while(*wstr)
 	{
-		if (!(ret = strndup(*str, i)))
-			return (NULL);
-		if ((tmp = ft_strdup(*str + i + 1)))
-		{
-			free(*str);
-			*str = ft_strdup(tmp);
-			free(tmp);
-		}
-		return (ret);
+		tmp = ret;
+		tmp2 = ft_retwchar(*wstr);
+		ret = ft_strjoin(tmp, tmp2);
+		free(tmp);
+		free(tmp2);
+		wstr++;
 	}
-	return (NULL);
+	return (ret);
 }

@@ -6,7 +6,7 @@
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/10 14:49:26 by sflinois          #+#    #+#             */
-/*   Updated: 2017/02/10 15:44:01 by sflinois         ###   ########.fr       */
+/*   Updated: 2017/02/21 17:09:00 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,53 +14,57 @@
 #include <locale.h>
 #include <wchar.h>
 #include "../includes/libft.h"
+#include <inttypes.h>
 
-char	*ft_retwchar(wint_t wi)
+char	*ft_retwchar(wchar_t wc)
 {
 	char	*ret;
 
-	if (wi < 128 && wi >= 0)
+	//ret = ft_imttoa_base((intmax_t) wc, 10, 0);
+	//ft_putstr(ret);
+	//ft_putstr("\n");
+	if (wc < 128 && wc >= 0)
 	{
 		if (!(ret = (char*)malloc(sizeof(char) * 2)))
 			return (NULL);
 		*(ret + 1) = 0;
-		*(ret) = wi;
+		*(ret) = wc;
 		return (ret);
 	}
-	else if (wi < 2048 && wi >= 128)
+	else if (wc < 2048 && wc >= 128)
 	{
 		if (!(ret = (char*)malloc(sizeof(char) * 3)))
 			return (NULL);
 		*(ret + 2) = 0;
-		*(ret + 1) = 128 + (63 & wi);
-		wi = wi >> 6;
-		*(ret) = 128 + 64 + (31 & wi);
+		*(ret + 1) = 128 + (63 & wc);
+		wc = wc >> 6;
+		*(ret) = 128 + 64 + (31 & wc);
 		return (ret);
 	}
-	else if (wi < 65536 && wi >= 2048)
+	else if (wc < 65536 && wc >= 2048)
 	{
 		if (!(ret = (char*)malloc(sizeof(char) * 4)))
 			return (NULL);
 		*(ret + 3) = 0;
-		*(ret + 2) = 128 + (63 & wi);
-		wi = wi >> 6;
-		*(ret + 1) = 128 + (63 & wi);
-		wi = wi >> 6;
-		*(ret) = 128 + 64 + 32 + (15 & wi);
+		*(ret + 2) = 128 + (63 & wc);
+		wc = wc >> 6;
+		*(ret + 1) = 128 + (63 & wc);
+		wc = wc >> 6;
+		*(ret) = 128 + 64 + 32 + (15 & wc);
 		return (ret);
 	}
-	else if (wi < 2097152 && wi >= 65536)
+	else if (wc < 2097152 && wc >= 65536)
 	{
 		if (!(ret = (char*)malloc(sizeof(char) * 5)))
 			return (NULL);
 		*(ret + 4) = 0;
-		*(ret + 3) = 256 + (127 & wi);
-		wi = wi >> 6;
-		*(ret + 2) = 256 + (127 & wi);
-		wi = wi >> 6;
-		*(ret + 1) = 256 + (127 & wi);
-		wi = wi >> 6;
-		*(ret) = 128 + 64 + 32 + 16 + (7 & wi);
+		*(ret + 3) = 256 + (127 & wc);
+		wc = wc >> 6;
+		*(ret + 2) = 256 + (127 & wc);
+		wc = wc >> 6;
+		*(ret + 1) = 256 + (127 & wc);
+		wc = wc >> 6;
+		*(ret) = 128 + 64 + 32 + 16 + (7 & wc);
 		return (ret);
 	}
 	return (NULL);

@@ -6,7 +6,7 @@
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/09 11:03:01 by sflinois          #+#    #+#             */
-/*   Updated: 2017/02/10 15:51:18 by sflinois         ###   ########.fr       */
+/*   Updated: 2017/02/21 17:08:48 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,8 @@ int			conv_c_arg(t_expr expr, va_list *args)
 	else
 	{
 		wc = va_arg(*args, wint_t);
-		disp = ft_retwchar(wc);
+		if ((disp = ft_retwchar((wchar_t)wc)) == NULL)
+			return (-1);
 	}
 	disp = apply_min_width(disp, expr);
 	disp = apply_flags(disp, expr);
@@ -100,16 +101,26 @@ int			conv_c_arg(t_expr expr, va_list *args)
 int			conv_s_arg(t_expr expr, va_list *args)
 {
 	char	*s;
+	wchar_t *ws;
 	char	*disp;
 	int		ret;
 
-	s = va_arg(*args, char*);
-	if (s == NULL)
+	if (expr.type == 's' && expr.length != 4)
 	{
-		ft_putstr("(null)");
-		return (6);
+		s = va_arg(*args, char*);
+		if (s == NULL)
+			disp = ft_strdup("(null)");
+		else
+			disp = ft_strdup(s);
 	}
-	disp = ft_strdup(s);
+	else
+	{
+		ws = va_arg(*args, wchar_t*);
+		if (ws == NULL)
+			disp = ft_strdup("(null)");
+		else
+			disp = ft_retwstr(ws);
+	}
 	disp = apply_precision(disp, expr);
 	disp = apply_min_width(disp, expr);
 	disp = apply_flags(disp, expr);
@@ -125,7 +136,14 @@ int			conv_p_arg(t_expr expr, va_list *args)
 	int		ret;
 
 	p = va_arg(*args, void*);
-	disp = ft_itoa_base((unsigned int)p, 16, 0);
+	disp = ft_imttoa_base((uintmax_t)p, 16, 0);
+	if (p == 0)
+	{
+		free(disp);
+		disp = ft_strdup("0x0");
+	}
+	else
+		expr.flags |= 1;
 	disp = apply_min_width(disp, expr);
 	disp = apply_flags(disp, expr);
 	ft_putstr(disp);
