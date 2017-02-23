@@ -6,7 +6,7 @@
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/06 15:17:24 by sflinois          #+#    #+#             */
-/*   Updated: 2017/01/24 17:19:14 by sflinois         ###   ########.fr       */
+/*   Updated: 2017/02/23 17:44:27 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,6 @@ char	*ft_strcat(char *s1, const char *s2)
 	while (s2[j])
 	{
 		s1[i + j] = s2[j];
-	/*	ft_putstr("s1 : ");
-		ft_putstr(s1);
-		ft_putchar('\n');
-		ft_putstr("s2 : ");
-		ft_putstr(s2);
-		ft_putchar('\n');
-		*/
 		j++;
 	}
 	s1[i + j] = '\0';

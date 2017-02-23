@@ -6,7 +6,7 @@
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/11 10:23:17 by sflinois          #+#    #+#             */
-/*   Updated: 2017/02/21 15:57:13 by sflinois         ###   ########.fr       */
+/*   Updated: 2017/02/23 17:45:19 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 
 char	*ft_sttoa(size_t n)
 {
-	size_t	nui;
+	size_t			nui;
 	unsigned int	i;
-	char				*str;
+	char			*str;
 
 	i = 1;
 	nui = n;
@@ -30,7 +30,7 @@ char	*ft_sttoa(size_t n)
 	if (!(str = (char *)malloc(sizeof(char) * (i + 1))))
 		return (NULL);
 	str[i--] = '\0';
-	nui =  n;
+	nui = n;
 	while (nui > 9)
 	{
 		str[i--] = nui % 10 + '0';

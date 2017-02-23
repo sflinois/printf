@@ -6,7 +6,7 @@
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/11 10:23:17 by sflinois          #+#    #+#             */
-/*   Updated: 2017/01/11 10:23:25 by sflinois         ###   ########.fr       */
+/*   Updated: 2017/02/23 17:33:30 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*ft_ctoa(char n)
 {
 	unsigned char	nui;
 	unsigned int	i;
-	char				*str;
+	char			*str;
 
 	i = (n < 0) ? 2 : 1;
 	nui = (n < 0) ? -n : n;

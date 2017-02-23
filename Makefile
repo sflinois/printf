@@ -6,7 +6,7 @@
 #    By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/10 11:48:48 by sflinois          #+#    #+#              #
-#    Updated: 2017/02/21 16:04:18 by sflinois         ###   ########.fr        #
+#    Updated: 2017/02/23 17:07:14 by sflinois         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,7 +60,7 @@ LDLIBS = -lft
 NAME = libftprintf.a
 
 CC = gcc
-CFLAGS = -Werror -Wall -Wextra -g
+CFLAGS = -Wall -Wextra -g
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
 O_PRINTF_NAME = $(S_PRINTF_NAME:.c=.o)

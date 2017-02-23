@@ -6,7 +6,7 @@
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/27 15:05:27 by sflinois          #+#    #+#             */
-/*   Updated: 2017/01/28 16:15:48 by sflinois         ###   ########.fr       */
+/*   Updated: 2017/02/23 17:56:07 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,10 @@
 
 char	*apply_min_width(char *str, t_expr expr)
 {
-	int	n;
+	int		n;
 	char	*ret;
 
 	n = expr.min_width - ft_strlen(str);
-
 	if (n <= 0)
 		return (str);
 	else

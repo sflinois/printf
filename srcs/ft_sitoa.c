@@ -6,7 +6,7 @@
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/11 10:23:17 by sflinois          #+#    #+#             */
-/*   Updated: 2017/01/11 10:23:25 by sflinois         ###   ########.fr       */
+/*   Updated: 2017/02/23 17:44:17 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 char	*ft_sitoa(short int n)
 {
 	unsigned short int	nui;
-	unsigned int	i;
+	unsigned int		i;
 	char				*str;
 
 	i = (n < 0) ? 2 : 1;

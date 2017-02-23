@@ -6,7 +6,7 @@
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/24 16:38:09 by sflinois          #+#    #+#             */
-/*   Updated: 2017/02/09 15:12:00 by sflinois         ###   ########.fr       */
+/*   Updated: 2017/02/23 17:47:19 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,6 @@ char	*applyflag_minus(char *str)
 	int		i;
 	char	*tmp_str;
 	char	*tmp_space;
-
 
 	i = 0;
 	while (str[i] == ' ')
@@ -153,7 +152,6 @@ char	*applyflag_spaceplus(char *str, t_expr expr)
 
 char	*apply_flags(char *str, t_expr expr)
 {
-
 	if (expr.flags & 2)
 		str = applyflag_zero(str, expr);
 	if (expr.flags & 1)

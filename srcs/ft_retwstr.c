@@ -6,7 +6,7 @@
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/21 15:57:11 by sflinois          #+#    #+#             */
-/*   Updated: 2017/02/21 16:07:14 by sflinois         ###   ########.fr       */
+/*   Updated: 2017/02/23 17:44:04 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*ft_retwstr(wchar_t *wstr)
 	if (!wstr)
 		return (NULL);
 	ret = ft_strdup("");
-	while(*wstr)
+	while (*wstr)
 	{
 		tmp = ret;
 		tmp2 = ft_retwchar(*wstr);

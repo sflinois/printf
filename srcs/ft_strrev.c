@@ -6,7 +6,7 @@
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/27 12:54:35 by sflinois          #+#    #+#             */
-/*   Updated: 2017/01/27 14:18:26 by sflinois         ###   ########.fr       */
+/*   Updated: 2017/02/23 17:44:47 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_strrev(char *str)
 	char	*tmp;
 	int		i_str;
 	int		i_tmp;
-	
+
 	if (str)
 	{
 		i_tmp = ft_strlen(str);

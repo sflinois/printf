@@ -6,7 +6,7 @@
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/24 15:07:24 by sflinois          #+#    #+#             */
-/*   Updated: 2017/01/24 16:07:08 by sflinois         ###   ########.fr       */
+/*   Updated: 2017/02/23 17:34:04 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@
 
 char	*ft_imttoa(intmax_t n)
 {
-	uintmax_t	nui;
+	uintmax_t		nui;
 	unsigned int	i;
-	char				*str;
+	char			*str;
 
 	i = (n < 0) ? 2 : 1;
 	nui = (n < 0) ? -n : n;

@@ -6,7 +6,7 @@
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 12:41:55 by sflinois          #+#    #+#             */
-/*   Updated: 2017/02/10 14:11:11 by sflinois         ###   ########.fr       */
+/*   Updated: 2017/02/23 18:01:03 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,34 +14,32 @@
 #include "../includes/libft.h"
 #include "../includes/ft_printf.h"
 
-int	convert_arg (t_expr expr, va_list *args)
+int		convert_arg(t_expr expr, va_list *args)
 {
-	static const t_conv conv_tab[] = {
-		{"bdiouxX", conv_int_arg},
-		{"DOU", conv_dou_arg},
-		{"cC", conv_c_arg},
-		{"sS", conv_s_arg},
-		{"p", conv_p_arg},
-		{"%", conv_pct_arg},
-		{NULL, NULL},
-	};
-	int		i;
-	int		ret;
+	static const t_conv	conv_tab[] = {
+						{"bdiouxX", conv_int_arg},
+						{"DOU", conv_dou_arg},
+						{"cC", conv_c_arg},
+						{"sS", conv_s_arg},
+						{"p", conv_p_arg},
+						{"%", conv_pct_arg},
+						{NULL, NULL},
+						};
+	int					i;
+	int					ret;
 
 	i = 0;
 	ret = -1;
-	while(!ft_strchr(conv_tab[i].type, expr.type))
+	while (!ft_strchr(conv_tab[i].type, expr.type))
 		i++;
 	if (conv_tab[i].type)
 		ret = conv_tab[i].conv(expr, args);
 	return (ret);
 }
 
-
-int	expr_pars(char **format, t_expr *expr)
+int		expr_pars(char **format, t_expr *expr)
 {
 	char	*c;
-
 
 	expr->flags = 0;
 	expr->min_width = 0;
@@ -49,7 +47,6 @@ int	expr_pars(char **format, t_expr *expr)
 	expr->length = 0;
 	while (**format && ft_strchr("#0-+ 123456789.hljz", (int)**format))
 	{
-		//flags
 		while (**format && (c = ft_strchr("#0-+ ", (int)**format)))
 		{
 			if (*c == '#')
@@ -64,8 +61,9 @@ int	expr_pars(char **format, t_expr *expr)
 				expr->flags |= 16;
 			(*format)++;
 		}
-
-		//min_width
+/*
+** min_width
+*/
 		while (**format && ft_isdigit((int)**format))
 		{
 			if (expr->min_width != 0)
@@ -73,8 +71,9 @@ int	expr_pars(char **format, t_expr *expr)
 			expr->min_width += (int)**format - '0';
 			(*format)++;
 		}
-
-		//precision
+/*
+** precision
+*/
 		if (**format && **format == '.')
 		{
 			expr->precision = 0;
@@ -87,7 +86,9 @@ int	expr_pars(char **format, t_expr *expr)
 				(*format)++;
 			}
 		}
-		//length
+/*
+** length
+*/
 		if (**format && (ft_strchr("hljz", (int)**format)))
 		{
 			if (**format == 'h' && expr->length < 2)
@@ -109,19 +110,18 @@ int	expr_pars(char **format, t_expr *expr)
 					expr->length = expr->length < 8 ? 8 : expr->length;
 					(*format)++;
 				}
-			}	
+			}
 			if (**format == 'j')
 				expr->length = expr->length < 16 ? 16 : expr->length;
 			if (**format == 'z')
 				expr->length = expr->length < 32 ? 32 : expr->length;
 			(*format)++;
 		}
-		//(*format)++;
 	}
 	return (1);
 }
 
-int	process_conv(va_list *args, char **format)
+int		process_conv(va_list *args, char **format)
 {
 	t_expr	expr;
 	int		ret;
@@ -150,9 +150,9 @@ int	process_conv(va_list *args, char **format)
 	return (ret);
 }
 
-int	process_args(va_list *args, char *format)
+int		process_args(va_list *args, char *format)
 {
-	int	ret;
+	int		ret;
 
 	ret = 0;
 	while (*format)
@@ -168,15 +168,13 @@ int	process_args(va_list *args, char *format)
 	return (ret);
 }
 
-int			ft_printf(const char *format, ...)
+int		ft_printf(const char *format, ...)
 {
-	va_list		args;
-	int			ret;
+	va_list	args;
+	int		ret;
 
 	va_start(args, format);
 	ret = process_args(&args, (char*)format);
 	va_end(args);
 	return (ret);
 }
-
-
