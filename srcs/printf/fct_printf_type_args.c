@@ -125,6 +125,7 @@ int				conv_s_arg(t_expr expr, va_list *args)
 	disp = apply_flags(disp, expr);
 	ft_putstr(disp);
 	ret = ft_strlen(disp);
+	free(disp);
 	return (ret == 0 && !s ? 1 : ret);
 }
 

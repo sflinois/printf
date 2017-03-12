@@ -32,15 +32,14 @@ char	*applyflag_sharp(char *str, t_expr expr)
 		hexa = 1;
 	if (i >= (1 + hexa))
 	{
-		ret = str;
 		i--;
 		if (*str == '0')
 			i = 0 + hexa;
-		ret[i] = 'x';
+		str[i] = 'x';
 		if (expr.type == 'X')
-			ret[i] = 'X';
-		ret[i - hexa] = '0';
-		return (ret);
+			str[i] = 'X';
+		str[i - hexa] = '0';
+		return (str);
 	}
 	ret = ft_strnew(ft_strlen(str) + 1 + hexa);
 	*(ret + hexa) = 'x';
@@ -90,13 +89,6 @@ char	*applyflag_minus(char *str)
 	free(tmp_space);
 	return (str);
 }
-
-/*
-**	This flag, compare to the others is used
-**	int conv_int_arg !
-**	This function will only work on a string that contain a
-**	number without modifications !
-*/
 
 char	*applyflag_spaceplus(char *str, t_expr expr)
 {
