@@ -6,7 +6,7 @@
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 17:45:51 by sflinois          #+#    #+#             */
-/*   Updated: 2017/02/23 17:45:52 by sflinois         ###   ########.fr       */
+/*   Updated: 2017/03/13 10:37:44 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void		new_expr(t_expr *expr)
 {
 	expr->flags = 0;
 	expr->min_width = 0;
-	expr->precision = 0;
+	expr->precision = -1;
 	expr->length = 0;
 	expr->type = 0;
 }

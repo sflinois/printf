@@ -6,7 +6,7 @@
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/21 15:57:11 by sflinois          #+#    #+#             */
-/*   Updated: 2017/02/23 17:44:04 by sflinois         ###   ########.fr       */
+/*   Updated: 2017/03/13 11:03:17 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,14 @@ char	*ft_retwstr(wchar_t *wstr)
 		wstr++;
 	}
 	return (ret);
+}
+
+size_t	ft_wstrlen(wchar_t *wstr)
+{
+	size_t	len;
+
+	len = 0;
+	while (wstr[len])
+		len++;
+	return (len);
 }

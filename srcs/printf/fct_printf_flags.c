@@ -6,7 +6,7 @@
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/24 16:38:09 by sflinois          #+#    #+#             */
-/*   Updated: 2017/02/23 17:47:19 by sflinois         ###   ########.fr       */
+/*   Updated: 2017/03/13 09:03:00 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*applyflag_sharp(char *str, t_expr expr)
 	int		hexa;
 	int		i;
 
-	if (!ft_strchr("oxXp", (int)expr.type))
+	if (!ft_strchr("oOxXp", (int)expr.type))
 		return (str);
 	i = 0;
 	while (str[i] == ' ' || str[i] == '0')

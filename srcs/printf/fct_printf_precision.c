@@ -6,7 +6,7 @@
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 17:47:25 by sflinois          #+#    #+#             */
-/*   Updated: 2017/02/23 17:47:30 by sflinois         ###   ########.fr       */
+/*   Updated: 2017/03/13 12:14:51 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,11 @@ char	*apply_precision(char *str, t_expr expr)
 		ret = ft_strndup(str, expr.precision);
 		free(str);
 		return (ret);
+	}
+	if (ft_strchr("p", (int)expr.type))
+	{
+		
+	
 	}
 	return (str);
 }

@@ -6,7 +6,7 @@
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 12:41:55 by sflinois          #+#    #+#             */
-/*   Updated: 2017/02/23 18:01:03 by sflinois         ###   ########.fr       */
+/*   Updated: 2017/03/13 10:40:15 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,6 @@ int		expr_pars(char **format, t_expr *expr)
 {
 	char	*c;
 
-	expr->flags = 0;
-	expr->min_width = 0;
-	expr->precision = -1;
-	expr->length = 0;
 	while (**format && ft_strchr("#0-+ 123456789.hljz", (int)**format))
 	{
 		while (**format && (c = ft_strchr("#0-+ ", (int)**format)))

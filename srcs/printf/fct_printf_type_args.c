@@ -6,7 +6,7 @@
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/09 11:03:01 by sflinois          #+#    #+#             */
-/*   Updated: 2017/02/23 17:51:51 by sflinois         ###   ########.fr       */
+/*   Updated: 2017/03/13 11:54:55 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,10 +140,14 @@ int				conv_p_arg(t_expr expr, va_list *args)
 	if (p == 0)
 	{
 		free(disp);
-		disp = ft_strdup("0x0");
+		if (expr.precision == 0)
+			disp = ft_strdup("0x");
+		else
+			disp = ft_strdup("0x0");
 	}
 	else
 		expr.flags |= 1;
+	disp = apply_precision(disp, expr);
 	disp = apply_min_width(disp, expr);
 	disp = apply_flags(disp, expr);
 	ft_putstr(disp);

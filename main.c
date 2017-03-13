@@ -6,7 +6,7 @@
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/10 12:10:17 by sflinois          #+#    #+#             */
-/*   Updated: 2017/02/23 17:31:33 by sflinois         ###   ########.fr       */
+/*   Updated: 2017/03/13 12:51:36 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,40 @@
 #include "includes/libft.h"
 #include <fcntl.h>
 
+/*
+ *
+ * todo
+ *
+ * 1 : write() '\0' when %c with 0
+ *
+ * 2 : apply precision on %S
+ *
+ * 3 : apply precision on %p
+ *
+ *
+ *
+*/
+
 int		main(void)
 {
 	int		ret;
 
-	ret = ft_printf("%s%s%s%s%s%s%s%s");
+	ret = printf("p%#.8d\n", 99999);
+	printf("%d\n", ret);
+	ret = ft_printf("f%.8d\n", 99999);
+	ft_printf("f%d\n", ret);
+//	ret = printf("%c\n", L'米');
+//	ret = printf("hh %hhc\n", L'米');
+//	printf("%d\n", ret);
+//	ret = printf("h %hc\n", L'米');
+//	printf("%d\n", ret);
+//	printf("%d\n", ret);
+//	ret = printf("ll %llc\n", L'米');
+//	printf("%d\n", ret);
+//	ret = printf("j %jc\n", L'米');
+//	printf("%d\n", ret);
+//	ret = printf("z %zc\n", L'米');
+//	printf("%d\n", ret);
 /*
 	ft_printf("\nft_printf :\n");
 	ret = ft_printf("f{%3c}", 0);
