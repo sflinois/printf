@@ -39,6 +39,8 @@ int				conv_int_arg(t_expr expr, va_list *args)
 	disp = apply_precision(disp, expr);
 	disp = apply_min_width(disp, expr);
 	disp = apply_flags(disp, expr);
+	if (!disp)
+		return(-1);
 	ft_putstr(disp);
 	ret = ft_strlen(disp);
 	free(disp);
@@ -61,6 +63,8 @@ int				conv_dou_arg(t_expr expr, va_list *args)
 	disp = apply_precision(disp, expr);
 	disp = apply_min_width(disp, expr);
 	disp = apply_flags(disp, expr);
+	if (!disp)
+		return(-1);
 	ft_putstr(disp);
 	ret = ft_strlen(disp);
 	free(disp);
@@ -75,6 +79,7 @@ int				conv_c_arg(t_expr expr, va_list *args)
 	int			ret;
 
 	c = 0;
+	wc = 0;
 	if (expr.type == 'c' && expr.length != 4)
 	{
 		c = va_arg(*args, int);
@@ -84,17 +89,23 @@ int				conv_c_arg(t_expr expr, va_list *args)
 	else
 	{
 		wc = va_arg(*args, wint_t);
-		if ((disp = ft_retwchar((wchar_t)wc)) == NULL)
+		if (!(disp = ft_retwchar((wchar_t)wc)))
 			return (-1);
 	}
 	disp = apply_min_width(disp, expr);
 	disp = apply_flags(disp, expr);
-	ret = ft_strlen(disp);
-	if (c == 0 && expr.min_width > 1)
+	if (!disp)
+		return(-1);
+	if (c == 0 && wc == 0 && expr.min_width >= 1)
 		disp[ft_strlen(disp) - 1] = 0;
+	if (c == 0 && wc == 0 && expr.flags & 4)
+		ft_putchar(0);
 	ft_putstr(disp);
+	if (c == 0 && wc == 0 && !(expr.flags & 4))
+		ft_putchar(0);
+	ret = ft_strlen(disp);
 	free(disp);
-	return (ret == 0 ? 1 : ret);
+	return (ret == 0 ? 1 + ret : ret);
 }
 
 int				conv_s_arg(t_expr expr, va_list *args)
@@ -123,6 +134,8 @@ int				conv_s_arg(t_expr expr, va_list *args)
 	disp = apply_precision(disp, expr);
 	disp = apply_min_width(disp, expr);
 	disp = apply_flags(disp, expr);
+	if (!disp)
+		return(-1);
 	ft_putstr(disp);
 	ret = ft_strlen(disp);
 	free(disp);
@@ -136,20 +149,23 @@ int				conv_p_arg(t_expr expr, va_list *args)
 	int			ret;
 
 	p = va_arg(*args, void*);
-	disp = ft_imttoa_base((uintmax_t)p, 16, 0);
-	if (p == 0)
+	if (p != 0)
 	{
-		free(disp);
+		disp = ft_imttoa_base((uintmax_t)p, 16, 0);
+		expr.flags |= 1;
+	}
+	else
+	{
 		if (expr.precision == 0)
 			disp = ft_strdup("0x");
 		else
 			disp = ft_strdup("0x0");
 	}
-	else
-		expr.flags |= 1;
 	disp = apply_precision(disp, expr);
 	disp = apply_min_width(disp, expr);
 	disp = apply_flags(disp, expr);
+	if (!disp)
+		return(-1);
 	ft_putstr(disp);
 	ret = ft_strlen(disp);
 	free(disp);
@@ -166,6 +182,8 @@ int				conv_pct_arg(t_expr expr, va_list *args)
 	disp = ft_strdup("%");
 	disp = apply_min_width(disp, expr);
 	disp = apply_flags(disp, expr);
+	if (!disp)
+		return(-1);
 	ft_putstr(disp);
 	ret = ft_strlen(disp);
 	free(disp);

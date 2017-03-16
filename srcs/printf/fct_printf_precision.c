@@ -20,7 +20,7 @@ char	*apply_precision(char *str, t_expr expr)
 	int		neg;
 	int		i;
 
-	if (expr.precision == -1)
+	if (!str || expr.precision == -1)
 		return (str);
 	if (ft_strchr("diouxX", (int)expr.type))
 	{
@@ -36,7 +36,8 @@ char	*apply_precision(char *str, t_expr expr)
 			neg = 1;
 		if (ft_strlen(str) - neg > (size_t)expr.precision)
 			return (str);
-		ret = ft_strnew(expr.precision + neg);
+		if (!(ret = ft_strnew(expr.precision + neg)))
+			return (NULL);
 		i = expr.precision - ft_strlen(str) + neg;
 		ft_strcat(ret + i, str);
 		free(str);
@@ -49,7 +50,8 @@ char	*apply_precision(char *str, t_expr expr)
 	{
 		if (ft_strlen(str) < (size_t)expr.precision)
 			return (str);
-		ret = ft_strndup(str, expr.precision);
+		if (!(ret = ft_strndup(str, expr.precision)))
+			return (NULL);
 		free(str);
 		return (ret);
 	}

@@ -149,7 +149,7 @@ int		process_conv(va_list *args, char **format)
 int		process_args(va_list *args, char *format)
 {
 	int		ret;
-
+	int		check_ret;
 	ret = 0;
 	while (*format)
 	{
@@ -159,7 +159,10 @@ int		process_args(va_list *args, char *format)
 			format++;
 			ret++;
 		}
-		ret += process_conv(args, &format);
+		check_ret = process_conv(args, &format);
+		if (check_ret == -1)
+			return (-1);
+		ret += check_ret;
 	}
 	return (ret);
 }

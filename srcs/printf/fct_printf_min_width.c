@@ -19,21 +19,22 @@ char	*apply_min_width(char *str, t_expr expr)
 	int		n;
 	char	*ret;
 
+	if (!str)
+		return(NULL);
 	n = expr.min_width - ft_strlen(str);
 	if (n <= 0 || (*str != 0 && expr.min_width == 1))
 		return (str);
 	else
 	{
-		if ((ret = ft_strnew(sizeof(char) * expr.min_width)))
+		if (!(ret = ft_strnew(sizeof(char) * expr.min_width)))
+			return (NULL);
+		while (n > 0)
 		{
-			while (n > 0)
-			{
-				n--;
-				ret[n] = ' ';
-			}
-			ret = ft_strcat(ret, str);
-			free(str);
+			n--;
+			ret[n] = ' ';
 		}
+		ret = ft_strcat(ret, str);
+		free(str);
 	}
 	return (ret);
 }

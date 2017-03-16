@@ -20,6 +20,8 @@ char	*applyflag_sharp(char *str, t_expr expr)
 	int		hexa;
 	int		i;
 
+	if (!str)
+		return (NULL);
 	if (!ft_strchr("oOxXp", (int)expr.type))
 		return (str);
 	i = 0;
@@ -41,7 +43,8 @@ char	*applyflag_sharp(char *str, t_expr expr)
 		str[i - hexa] = '0';
 		return (str);
 	}
-	ret = ft_strnew(ft_strlen(str) + 1 + hexa);
+	if (!(ret = ft_strnew(ft_strlen(str) + 1 + hexa)))
+		return (NULL);
 	*(ret + hexa) = 'x';
 	if (expr.type == 'X')
 		*(ret + hexa) = 'X';
@@ -55,7 +58,7 @@ char	*applyflag_zero(char *str, t_expr expr)
 {
 	int		i;
 
-	if (expr.flags & 4 || !ft_strchr("diouxXsc%", (int)expr.type))
+	if (!str || expr.flags & 4 || !ft_strchr("diouxXsc%", (int)expr.type))
 		return (str);
 	i = 0;
 	while (str[i] && expr.precision == -1)
@@ -78,11 +81,15 @@ char	*applyflag_minus(char *str)
 	char	*tmp_str;
 	char	*tmp_space;
 
+	if (!str)
+		return (NULL);
 	i = 0;
 	while (str[i] == ' ')
 		i++;
 	tmp_str = ft_strdup(str + i);
 	tmp_space = ft_strndup(str, i);
+	if (!tmp_str || !tmp_space)
+		return (NULL);
 	free(str);
 	str = ft_strjoin(tmp_str, tmp_space);
 	free(tmp_str);
@@ -97,14 +104,15 @@ char	*applyflag_spaceplus(char *str, t_expr expr)
 	int		i;
 	char	c;
 
-	if (!ft_strchr("di", (int)expr.type))
+	if (!str || !ft_strchr("di", (int)expr.type))
 		return (str);
 	i = 0;
 	c = expr.flags & 8 ? '+' : ' ';
 	if (str[0] == '0' && !str[1])
 	{
 		free(str);
-		ret = ft_strdup("+0");
+		if(!(ret = ft_strdup("+0")))
+			return (NULL);
 		*ret = c;
 		return (ret);
 	}
@@ -129,7 +137,8 @@ char	*applyflag_spaceplus(char *str, t_expr expr)
 		}
 		else
 		{
-			ret = ft_strjoin(" ", str);
+			if (!(ret = ft_strjoin(" ", str)))
+				return (NULL);
 			free(str);
 			*ret = c;
 		}

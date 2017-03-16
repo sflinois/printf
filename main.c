@@ -23,13 +23,15 @@
  *
  * todo
  *
- * 1 : write() '\0' when %c with 0
+ * Check return values 
  *
+ * 1 : write() '\0' when %c with 0
+ *  OK
  * 2 : apply precision on %S
  *
  * 3 : apply precision on %p
  *
- *
+ * 4: flag 0 with %p && %s
  *
 */
 
@@ -37,10 +39,12 @@ int		main(void)
 {
 	int		ret;
 
-	ret = printf("p%#.8d\n", 99999);
+	ret = printf("p%.10ls", L"ÊM-M-^QÊM-^XØ‰∏M-ÂM-^O™ÁM-^L´„M-M-^B\n");
 	printf("%d\n", ret);
-	ret = ft_printf("f%.8d\n", 99999);
-	ft_printf("f%d\n", ret);
+	ret = ft_printf("f%.10ls", L"ÊM-M-^QÊM-^XØ‰∏M-ÂM-^O™ÁM-^L´„M-M-^B\n");
+	printf("%d\n", ret);
+
+
 //	ret = printf("%c\n", L'米');
 //	ret = printf("hh %hhc\n", L'米');
 //	printf("%d\n", ret);
