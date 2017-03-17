@@ -89,8 +89,7 @@ int				conv_c_arg(t_expr expr, va_list *args)
 	else
 	{
 		wc = va_arg(*args, wint_t);
-		if (!(disp = ft_retwchar((wchar_t)wc)))
-			return (-1);
+		disp = ft_retwchar((wchar_t)wc);
 	}
 	disp = apply_min_width(disp, expr);
 	disp = apply_flags(disp, expr);
@@ -105,7 +104,7 @@ int				conv_c_arg(t_expr expr, va_list *args)
 		ft_putchar(0);
 	ret = ft_strlen(disp);
 	free(disp);
-	return (ret == 0 ? 1 + ret : ret);
+	return (c == 0 && wc == 0 ? 1 + ret : ret);
 }
 
 int				conv_s_arg(t_expr expr, va_list *args)

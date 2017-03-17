@@ -16,6 +16,27 @@
 #include <stdarg.h>
 #include <inttypes.h>
 
+/*
+** Binary flags for printf flags
+*/
+
+#define F_SHARP = 1
+#define F_ZERO = 2
+#define F_MINUS = 4
+#define F_PLUS = 8
+#define F_SPACE = 16
+
+/*
+** Binary flags for printf length modifier
+*/
+
+#define L_HH = 1
+#define L_H = 2
+#define L_L = 4
+#define L_LL = 8
+#define L_J = 16
+#define L_Z = 32
+
 typedef struct		s_expr
 {
 	unsigned char	flags;

@@ -67,3 +67,13 @@ char	*ft_retwchar(wchar_t wc)
 	}
 	return (NULL);
 }
+
+/*
+static char	one_byte_wchar(wchar_t wc, char *ret)
+{
+
+
+
+
+}
+*/
