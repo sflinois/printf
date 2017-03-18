@@ -6,7 +6,7 @@
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/10 15:24:30 by sflinois          #+#    #+#             */
-/*   Updated: 2017/02/03 16:43:33 by sflinois         ###   ########.fr       */
+/*   Updated: 2017/03/18 16:32:09 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,22 +20,22 @@
 ** Binary flags for printf flags
 */
 
-#define F_SHARP = 1
-#define F_ZERO = 2
-#define F_MINUS = 4
-#define F_PLUS = 8
-#define F_SPACE = 16
+#define F_SHARP		1
+#define F_ZERO		2
+#define F_MINUS		4
+#define F_PLUS		8
+#define F_SPACE		16
 
 /*
 ** Binary flags for printf length modifier
 */
 
-#define L_HH = 1
-#define L_H = 2
-#define L_L = 4
-#define L_LL = 8
-#define L_J = 16
-#define L_Z = 32
+#define L_HH		1
+#define L_H			2
+#define L_L			4
+#define L_LL		8
+#define L_J			16
+#define L_Z			32
 
 typedef struct		s_expr
 {

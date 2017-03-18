@@ -6,7 +6,7 @@
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/15 11:22:10 by sflinois          #+#    #+#             */
-/*   Updated: 2017/03/13 10:47:23 by sflinois         ###   ########.fr       */
+/*   Updated: 2017/03/18 16:32:32 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,7 @@ char				ft_digit_to_char(int d, int base, int maj);
 void				ft_strrev(char *str);
 char				*ft_retwchar(wchar_t wc);
 char				*ft_retwstr(wchar_t *wstr);
+char				*ft_retnwstr(wchar_t *wstr, size_t size);
 int					ft_printf(const char *format, ...);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/24 14:22:14 by sflinois          #+#    #+#             */
-/*   Updated: 2017/02/10 14:33:54 by sflinois         ###   ########.fr       */
+/*   Updated: 2017/03/18 16:29:53 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,15 @@ void	apply_length(intmax_t *imt, t_expr expr, va_list *args)
 		*imt = va_arg(*args, uintmax_t);
 		if (expr.length == 0)
 			*imt = (unsigned int)*imt;
-		else if (expr.length == 1)
+		else if (expr.length == L_HH)
 			*imt = (unsigned char)*imt;
-		else if (expr.length == 2)
+		else if (expr.length == L_H)
 			*imt = (unsigned short int)*imt;
-		else if (expr.length == 4)
+		else if (expr.length == L_L)
 			*imt = (unsigned long int)*imt;
-		else if (expr.length == 8)
+		else if (expr.length == L_LL)
 			*imt = (unsigned long long int)*imt;
-		else if (expr.length == 32)
+		else if (expr.length == L_Z)
 			*imt = (size_t)*imt;
 	}
 	else if (!is_uns)
@@ -43,15 +43,15 @@ void	apply_length(intmax_t *imt, t_expr expr, va_list *args)
 		*imt = va_arg(*args, intmax_t);
 		if (expr.length == 0)
 			*imt = (int)*imt;
-		else if (expr.length == 1)
+		else if (expr.length == L_HH)
 			*imt = (char)*imt;
-		else if (expr.length == 2)
+		else if (expr.length == L_H)
 			*imt = (short int)*imt;
-		else if (expr.length == 4)
+		else if (expr.length == L_L)
 			*imt = (long int)*imt;
-		else if (expr.length == 8)
+		else if (expr.length == L_LL)
 			*imt = (long long int)*imt;
-		else if (expr.length == 32)
+		else if (expr.length == L_Z)
 			*imt = (size_t)*imt;
 	}
 }

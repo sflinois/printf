@@ -6,7 +6,7 @@
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 17:47:25 by sflinois          #+#    #+#             */
-/*   Updated: 2017/03/13 12:14:51 by sflinois         ###   ########.fr       */
+/*   Updated: 2017/03/18 14:09:19 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	*apply_precision(char *str, t_expr expr)
 	{
 		if (*str == '0' && expr.precision == 0)
 		{
-			if (expr.type == 'o' && (expr.flags & 1))
+			if (expr.type == 'o' && (expr.flags & F_SHARP))
 				return (str);
 			free(str);
 			return (ft_strdup(""));

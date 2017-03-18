@@ -6,7 +6,7 @@
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/24 16:38:09 by sflinois          #+#    #+#             */
-/*   Updated: 2017/03/13 12:52:07 by sflinois         ###   ########.fr       */
+/*   Updated: 2017/03/18 12:07:34 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ char	*applyflag_zero(char *str, t_expr expr)
 {
 	int		i;
 
-	if (!str || expr.flags & 4 || !ft_strchr("diouxXsc%", (int)expr.type))
+	if (!str || expr.flags & F_MINUS || !ft_strchr("diouxXsc%", (int)expr.type))
 		return (str);
 	i = 0;
 	while (str[i] && expr.precision == -1)
@@ -107,7 +107,7 @@ char	*applyflag_spaceplus(char *str, t_expr expr)
 	if (!str || !ft_strchr("di", (int)expr.type))
 		return (str);
 	i = 0;
-	c = expr.flags & 8 ? '+' : ' ';
+	c = expr.flags & F_PLUS ? '+' : ' ';
 	if (str[0] == '0' && !str[1])
 	{
 		free(str);
@@ -153,13 +153,13 @@ char	*applyflag_spaceplus(char *str, t_expr expr)
 
 char	*apply_flags(char *str, t_expr expr)
 {
-	if (expr.flags & 2)
+	if (expr.flags & F_ZERO)
 		str = applyflag_zero(str, expr);
-	if (expr.flags & 1)
+	if (expr.flags & F_SHARP)
 		str = applyflag_sharp(str, expr);
-	if (expr.flags & 4)
+	if (expr.flags & F_MINUS)
 		str = applyflag_minus(str);
-	if (expr.flags & 8 || expr.flags & 16)
+	if (expr.flags & F_PLUS || expr.flags & F_SPACE)
 		str = applyflag_spaceplus(str, expr);
 	return (str);
 }

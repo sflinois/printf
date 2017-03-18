@@ -6,7 +6,7 @@
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/09 11:03:01 by sflinois          #+#    #+#             */
-/*   Updated: 2017/03/13 12:52:05 by sflinois         ###   ########.fr       */
+/*   Updated: 2017/03/18 17:29:18 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int				conv_c_arg(t_expr expr, va_list *args)
 
 	c = 0;
 	wc = 0;
-	if (expr.type == 'c' && expr.length != 4)
+	if (expr.type == 'c' && expr.length != L_L)
 	{
 		c = va_arg(*args, int);
 		disp = ft_strnew(1);
@@ -97,10 +97,10 @@ int				conv_c_arg(t_expr expr, va_list *args)
 		return(-1);
 	if (c == 0 && wc == 0 && expr.min_width >= 1)
 		disp[ft_strlen(disp) - 1] = 0;
-	if (c == 0 && wc == 0 && expr.flags & 4)
+	if (c == 0 && wc == 0 && expr.flags & F_MINUS)
 		ft_putchar(0);
 	ft_putstr(disp);
-	if (c == 0 && wc == 0 && !(expr.flags & 4))
+	if (c == 0 && wc == 0 && !(expr.flags & F_MINUS))
 		ft_putchar(0);
 	ret = ft_strlen(disp);
 	free(disp);
@@ -114,13 +114,13 @@ int				conv_s_arg(t_expr expr, va_list *args)
 	char		*disp;
 	int			ret;
 
-	if (expr.type == 's' && expr.length != 4)
+	if (expr.type == 's' && expr.length != L_L)
 	{
 		s = va_arg(*args, char*);
 		if (s == NULL)
 			disp = ft_strdup("(null)");
-		else
-			disp = ft_strdup(s);
+		else 
+			disp = expr.precision != -1 ? ft_strndup(s, expr.precision) : ft_strdup(s);
 	}
 	else
 	{
@@ -128,17 +128,17 @@ int				conv_s_arg(t_expr expr, va_list *args)
 		if (ws == NULL)
 			disp = ft_strdup("(null)");
 		else
-			disp = ft_retwstr(ws);
+			disp = expr.precision != -1 ? ft_retnwstr(ws, expr.precision) : ft_retwstr(ws);
 	}
 	disp = apply_precision(disp, expr);
 	disp = apply_min_width(disp, expr);
 	disp = apply_flags(disp, expr);
 	if (!disp)
 		return(-1);
-	ft_putstr(disp);
 	ret = ft_strlen(disp);
+	ft_putstr(disp);
 	free(disp);
-	return (ret == 0 && !s ? 1 : ret);
+	return (ret);
 }
 
 int				conv_p_arg(t_expr expr, va_list *args)
@@ -151,7 +151,7 @@ int				conv_p_arg(t_expr expr, va_list *args)
 	if (p != 0)
 	{
 		disp = ft_imttoa_base((uintmax_t)p, 16, 0);
-		expr.flags |= 1;
+		expr.flags |= F_SHARP;
 	}
 	else
 	{
