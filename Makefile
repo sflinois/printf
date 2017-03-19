@@ -6,7 +6,7 @@
 #    By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/10 11:48:48 by sflinois          #+#    #+#              #
-#    Updated: 2017/03/18 16:33:04 by sflinois         ###   ########.fr        #
+#    Updated: 2017/03/19 14:37:29 by sflinois         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,7 +48,8 @@ SRC_NAME = ft_btree_create_node.c ft_btree_apply_prefix.c \
 S_PRINTF_PATH = $(SRC_PATH)/printf
 S_PRINTF_NAME = ft_printf.c fct_printf_type_args.c fct_expr.c \
 		fct_printf_min_width.c fct_printf_precision.c \
-		fct_printf_flags.c fct_printf_length.c
+		fct_printf_flags.c fct_printf_spflags.c fct_printf_c_args.c \
+		fct_printf_length.c fct_printf_parsing.c \
 
 OBJ_PATH = objs
 O_PRINTF_PATH = o_printf

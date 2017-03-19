@@ -6,13 +6,25 @@
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/24 16:38:09 by sflinois          #+#    #+#             */
-/*   Updated: 2017/03/18 12:07:34 by sflinois         ###   ########.fr       */
+/*   Updated: 2017/03/19 14:23:10 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/libft.h"
 #include "../../includes/ft_printf.h"
 #include <stdlib.h>
+
+char	*sharp_noalloc(char *str, t_expr expr, int hexa, int i)
+{
+	i--;
+	if (*str == '0')
+		i = hexa;
+	str[i] = 'x';
+	if (expr.type == 'X')
+		str[i] = 'X';
+	str[i - hexa] = '0';
+	return (str);
+}
 
 char	*applyflag_sharp(char *str, t_expr expr)
 {
@@ -27,27 +39,16 @@ char	*applyflag_sharp(char *str, t_expr expr)
 	i = 0;
 	while (str[i] == ' ' || str[i] == '0')
 		i++;
-	if (!str[i])
+	if (!str[i] || str[i] == 'x')
 		return (str);
 	hexa = 0;
 	if (ft_strchr("xXp", (int)expr.type))
 		hexa = 1;
 	if (i >= (1 + hexa))
-	{
-		i--;
-		if (*str == '0')
-			i = 0 + hexa;
-		str[i] = 'x';
-		if (expr.type == 'X')
-			str[i] = 'X';
-		str[i - hexa] = '0';
-		return (str);
-	}
+		return (sharp_noalloc(str, expr, hexa, i));
 	if (!(ret = ft_strnew(ft_strlen(str) + 1 + hexa)))
 		return (NULL);
-	*(ret + hexa) = 'x';
-	if (expr.type == 'X')
-		*(ret + hexa) = 'X';
+	*(ret + hexa) = expr.type == 'X' ? 'X' : 'x';
 	*ret = '0';
 	ret = ft_strcat(ret, str + i);
 	free(str);
@@ -95,60 +96,6 @@ char	*applyflag_minus(char *str)
 	free(tmp_str);
 	free(tmp_space);
 	return (str);
-}
-
-char	*applyflag_spaceplus(char *str, t_expr expr)
-{
-	char	*ret;
-	int		nb;
-	int		i;
-	char	c;
-
-	if (!str || !ft_strchr("di", (int)expr.type))
-		return (str);
-	i = 0;
-	c = expr.flags & F_PLUS ? '+' : ' ';
-	if (str[0] == '0' && !str[1])
-	{
-		free(str);
-		if(!(ret = ft_strdup("+0")))
-			return (NULL);
-		*ret = c;
-		return (ret);
-	}
-	while (str[i] == '0')
-		i++;
-	while (str[i] == ' ')
-		i++;
-	nb = i;
-	if (str[i] == '-')
-		return (str);
-	while (ft_isdigit(str[i]))
-		i++;
-	while (i - nb < expr.precision && nb > 0)
-		nb--;
-	ret = str;
-	if (nb == 0)
-	{
-		if (str[i])
-		{
-			ft_memmove(str + 1, str, i);
-			str[0] = c;
-		}
-		else
-		{
-			if (!(ret = ft_strjoin(" ", str)))
-				return (NULL);
-			free(str);
-			*ret = c;
-		}
-		return (ret);
-	}
-	if (str[nb - 1] == '0')
-		str[0] = c;
-	else
-		str[nb - 1] = c;
-	return (ret);
 }
 
 char	*apply_flags(char *str, t_expr expr)

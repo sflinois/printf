@@ -6,7 +6,7 @@
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/03 12:41:55 by sflinois          #+#    #+#             */
-/*   Updated: 2017/03/18 12:14:44 by sflinois         ###   ########.fr       */
+/*   Updated: 2017/03/19 12:29:44 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,80 +39,12 @@ int		convert_arg(t_expr expr, va_list *args)
 
 int		expr_pars(char **format, t_expr *expr)
 {
-	char	*c;
-
 	while (**format && ft_strchr("#0-+ 123456789.hljz", (int)**format))
 	{
-		while (**format && (c = ft_strchr("#0-+ ", (int)**format)))
-		{
-			if (*c == '#')
-				expr->flags |= F_SHARP;
-			if (*c == '0')
-				expr->flags |= F_ZERO;
-			if (*c == '-')
-				expr->flags |= F_MINUS;
-			if (*c == '+')
-				expr->flags |= F_PLUS;
-			if (*c == ' ')
-				expr->flags |= F_SPACE;
-			(*format)++;
-		}
-/*
-** min_width
-*/
-		while (**format && ft_isdigit((int)**format))
-		{
-			if (expr->min_width != 0)
-				expr->min_width *= 10;
-			expr->min_width += (int)**format - '0';
-			(*format)++;
-		}
-/*
-** precision
-*/
-		if (**format && **format == '.')
-		{
-			expr->precision = 0;
-			(*format)++;
-			while (**format && ft_isdigit((int)**format))
-			{
-				if (expr->precision != 0)
-					expr->precision *= 10;
-				expr->precision += (int)**format - '0';
-				(*format)++;
-			}
-		}
-/*
-** length
-*/
-		if (**format && (ft_strchr("hljz", (int)**format)))
-		{
-			if (**format == 'h' && expr->length < 2)
-			{
-				if (*((*format) + 1) == 'h')
-				{
-					expr->length = expr->length < L_HH ? L_HH : expr->length;
-					(*format)++;
-				}
-				else
-					expr->length = expr->length < L_H ? L_H : expr->length;
-			}
-			if (**format == 'l')
-			{
-				if (expr->length < 4)
-					expr->length = expr->length < L_L ? L_L : expr->length;
-				if (*((*format) + 1) == 'l')
-				{
-					expr->length = expr->length < L_LL ? L_LL : expr->length;
-					(*format)++;
-				}
-			}
-			if (**format == 'j')
-				expr->length = expr->length < L_J ? L_J : expr->length;
-			if (**format == 'z')
-				expr->length = expr->length < L_Z ? L_Z : expr->length;
-			(*format)++;
-		}
+		pars_flags(format, expr);
+		pars_min_width(format, expr);
+		pars_precision(format, expr);
+		pars_length(format, expr);
 	}
 	return (1);
 }
@@ -150,6 +82,7 @@ int		process_args(va_list *args, char *format)
 {
 	int		ret;
 	int		check_ret;
+
 	ret = 0;
 	while (*format)
 	{

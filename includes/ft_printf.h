@@ -6,7 +6,7 @@
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/10 15:24:30 by sflinois          #+#    #+#             */
-/*   Updated: 2017/03/18 16:32:09 by sflinois         ###   ########.fr       */
+/*   Updated: 2017/03/19 14:20:07 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,15 +66,17 @@ typedef struct		s_len_modifier
 
 char				*apply_min_width(char *str, t_expr expr);
 char				*apply_precision(char *str, t_expr expr);
-
 char				*applyflag_spaceplus(char *str, t_expr expr);
-
 char				*apply_flags(char *str, t_expr expr);
 void				apply_length(intmax_t *imt, t_expr expr, va_list *args);
 
 void				new_expr(t_expr *expr);
 int					convert_arg (t_expr expr, va_list *args);
 int					expr_pars(char **format, t_expr *expr);
+void				pars_flags(char **format, t_expr *expr);
+void				pars_min_width(char **format, t_expr *expr);
+void				pars_precision(char **format, t_expr *expr);
+void				pars_length(char **format, t_expr *expr);
 int					process_conv(va_list *args, char **format);
 int					process_args(va_list *args, char *format);
 int					conv_int_arg(t_expr, va_list *args);

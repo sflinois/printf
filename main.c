@@ -6,7 +6,7 @@
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/10 12:10:17 by sflinois          #+#    #+#             */
-/*   Updated: 2017/03/18 17:25:41 by sflinois         ###   ########.fr       */
+/*   Updated: 2017/03/19 14:10:02 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,27 @@ int		main(void)
 	int		ret;
 
 	setlocale(LC_ALL, "");
-	ret = printf("{%060S}", L"ÊM-M-^QÊM-^XØ‰∏M-ÂM-^O™ÁM-^L´„M-M-^B");
+	ret = printf("{%#o}", 42);
 	printf("%d\n", ret);
-	ret = ft_printf("{%060S}", L"ÊM-M-^QÊM-^XØ‰∏M-ÂM-^O™ÁM-^L´„M-M-^B");
-	ft_printf("%d\n", ret);
+	ret = printf("{%#O}", 42);
+	printf("%d\n", ret);
+	ret = printf("{%#x}", 42);
+	printf("%d\n", ret);
+	ret = printf("{%#X}", 42);
+	printf("%d\n", ret);
+	ret = printf("{%#p}", 42);
+	printf("%d\n", ret);
 
+	ret = ft_printf("{%#o}", 42);
+	ft_printf("%d\n", ret);
+	ret = ft_printf("{%#O}", 42);
+	ft_printf("%d\n", ret);
+	ret = ft_printf("{%#x}", 42);
+	ft_printf("%d\n", ret);
+	ret = ft_printf("{%#X}", 42);
+	ft_printf("%d\n", ret);
+	ret = ft_printf("{%#p}", 42);
+	ft_printf("%d\n", ret);
 //	ret = printf("%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S\n", L"Α α", L"Β β", L"Γ γ", L"Δ δ", L"Ε ε", L"Ζ ζ", L"Η η", L"Θ θ", L"Ι ι", L"Κ κ", L"Λ λ", L"Μ μ", L"Ν ν", L"Ξ ξ", L"Ο ο", L"Π π", L"Ρ ρ", L"Σ σ", L"Τ τ", L"Υ υ", L"Φ φ", L"Χ χ", L"Ψ ψ", L"Ω ω", L"");;
 //	ret = printf("p%.10ls", L"ÊM-M-^QÊM-^XØ‰∏M-ÂM-^O™ÁM-^L´„M-M-^B\n");
 //	printf("%d\n", ret);
