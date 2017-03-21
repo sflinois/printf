@@ -16,26 +16,10 @@
 #include "../includes/libft.h"
 #include "../includes/ft_printf.h"
 
-int				conv_c_arg(t_expr expr, va_list *args)
+int				end_conv_c(t_expr expr, char *disp, int c, wint_t wc)
 {
-	int			c;
-	wint_t		wc;
-	char		*disp;
 	int			ret;
 
-	c = 0;
-	wc = 0;
-	if (expr.type == 'c' && expr.length != L_L)
-	{
-		c = va_arg(*args, int);
-		disp = ft_strnew(1);
-		disp[0] = c;
-	}
-	else
-	{
-		wc = va_arg(*args, wint_t);
-		disp = ft_retwchar((wchar_t)wc);
-	}
 	disp = apply_min_width(disp, expr);
 	disp = apply_flags(disp, expr);
 	if (!disp)
@@ -50,4 +34,26 @@ int				conv_c_arg(t_expr expr, va_list *args)
 	ret = ft_strlen(disp);
 	free(disp);
 	return (c == 0 && wc == 0 ? 1 + ret : ret);
+}
+
+int				conv_c_arg(t_expr expr, va_list *args)
+{
+	int			c;
+	wint_t		wc;
+	char		*disp;
+
+	c = 0;
+	wc = 0;
+	if (expr.type == 'c' && expr.length != L_L)
+	{
+		c = va_arg(*args, int);
+		disp = ft_strnew(1);
+		disp[0] = c;
+	}
+	else
+	{
+		wc = va_arg(*args, wint_t);
+		disp = ft_retwchar((wchar_t)wc);
+	}
+	return (end_conv_c(expr, disp, c, wc));
 }

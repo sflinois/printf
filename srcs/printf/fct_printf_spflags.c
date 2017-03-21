@@ -14,9 +14,35 @@
 #include "../../includes/ft_printf.h"
 #include <stdlib.h>
 
-char	*applyflag_spaceplus(char *str, t_expr expr)
+char	*spflags_return(char *str, char *c, int nb, int i)
 {
 	char	*ret;
+
+	ret = str;
+	if (nb == 0)
+	{
+		if (str[i])
+		{
+			ft_memmove(str + 1, str, i);
+			str[0] = *c;
+		}
+		else
+		{
+			if (!(ret = ft_strjoin(c, str)))
+				return (NULL);
+			free(str);
+		}
+		return (ret);
+	}
+	if (str[nb - 1] == '0')
+		str[0] = *c;
+	else
+		str[nb - 1] = *c;
+	return (ret);
+}
+
+char	*applyflag_spaceplus(char *str, t_expr expr)
+{
 	int		nb;
 	int		i;
 	char	*c;
@@ -41,25 +67,5 @@ char	*applyflag_spaceplus(char *str, t_expr expr)
 		i++;
 	while (i - nb < expr.precision && nb > 0)
 		nb--;
-	ret = str;
-	if (nb == 0)
-	{
-		if (str[i])
-		{
-			ft_memmove(str + 1, str, i);
-			str[0] = *c;
-		}
-		else
-		{
-			if (!(ret = ft_strjoin(c, str)))
-				return (NULL);
-			free(str);
-		}
-		return (ret);
-	}
-	if (str[nb - 1] == '0')
-		str[0] = *c;
-	else
-		str[nb - 1] = *c;
-	return (ret);
+	return (spflags_return(str, c, nb, i));
 }
