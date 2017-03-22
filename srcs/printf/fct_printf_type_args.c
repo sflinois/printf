@@ -6,7 +6,7 @@
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/09 11:03:01 by sflinois          #+#    #+#             */
-/*   Updated: 2017/03/19 14:41:17 by sflinois         ###   ########.fr       */
+/*   Updated: 2017/03/22 13:28:36 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,8 @@ int				conv_s_arg(t_expr expr, va_list *args)
 	{
 		s = va_arg(*args, char*);
 		if (s == NULL)
-			disp = ft_strdup("(null)");
+			disp = expr.precision != -1 ?
+				ft_strndup("(null)", expr.precision) : ft_strdup("(null)");
 		else
 			disp = expr.precision != -1 ?
 				ft_strndup(s, expr.precision) : ft_strdup(s);
@@ -88,7 +89,8 @@ int				conv_s_arg(t_expr expr, va_list *args)
 	{
 		ws = va_arg(*args, wchar_t*);
 		if (ws == NULL)
-			disp = ft_strdup("(null)");
+			disp = expr.precision != -1 ?
+				ft_strndup("(null)", expr.precision) : ft_strdup("(null)");
 		else
 			disp = expr.precision != -1 ?
 				ft_retnwstr(ws, expr.precision) : ft_retwstr(ws);

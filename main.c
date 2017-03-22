@@ -6,7 +6,7 @@
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/10 12:10:17 by sflinois          #+#    #+#             */
-/*   Updated: 2017/03/19 14:10:02 by sflinois         ###   ########.fr       */
+/*   Updated: 2017/03/22 13:23:19 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@ int		main(void)
 	setlocale(LC_ALL, "");
 	ret = printf("{%s}", test);
 	printf("%d\n", ret);
+	ret = printf("{%.2s}", test);
+	printf("%d\n", ret);
 	ret = printf("{%s}", "");
 	printf("%d\n", ret);
 	ret = printf("{%s}", "test");
-	printf("%d\n", ret);
-	ret = printf("{%#s}", "test");
 	printf("%d\n", ret);
 	ret = printf("{%s}", "test");
 	printf("%d\n", ret);
