@@ -6,7 +6,7 @@
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/10 14:49:26 by sflinois          #+#    #+#             */
-/*   Updated: 2017/03/25 13:48:08 by sflinois         ###   ########.fr       */
+/*   Updated: 2017/03/25 13:55:40 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,41 @@
 #include <wchar.h>
 #include "../includes/libft.h"
 #include <inttypes.h>
+
+static char		*four_byte_char(wchar_t wc, char *ret)
+{
+	*(ret + 3) = 256 + (127 & wc);
+	wc = wc >> 6;
+	*(ret + 2) = 256 + (127 & wc);
+	wc = wc >> 6;
+	*(ret + 1) = 256 + (127 & wc);
+	wc = wc >> 6;
+	*(ret) = 128 + 64 + 32 + 16 + (7 & wc);
+	return (ret);
+}
+
+static char		*mult_byte_char(wchar_t wc, char *ret)
+{
+	if (wc >= 128 && wc < 2048)
+	{
+		*(ret + 1) = 128 + (63 & wc);
+		wc = wc >> 6;
+		*(ret) = 128 + 64 + (31 & wc);
+		return (ret);
+	}
+	else if (wc >= 2048 && wc < 65536)
+	{
+		*(ret + 2) = 128 + (63 & wc);
+		wc = wc >> 6;
+		*(ret + 1) = 128 + (63 & wc);
+		wc = wc >> 6;
+		*(ret) = 128 + 64 + 32 + (15 & wc);
+		return (ret);
+	}
+	else if (wc >= 65536 && wc < 2097152)
+		return (four_byte_char(wc, ret));
+	return (NULL);
+}
 
 char			*ft_retwchar(wchar_t wc)
 {
@@ -39,39 +74,4 @@ char			*ft_retwchar(wchar_t wc)
 		return (ret);
 	}
 	return (mult_byte_char(wc, ret));
-}
-
-static char		mult_byte_char(wchar_t wc, char *ret)
-{
-	if (wc >= 128 && wc < 2048)
-	{
-		*(ret + 1) = 128 + (63 & wc);
-		wc = wc >> 6;
-		*(ret) = 128 + 64 + (31 & wc);
-		return (ret);
-	}
-	else if (wc >= 2048 && wc < 65536)
-	{
-		*(ret + 2) = 128 + (63 & wc);
-		wc = wc >> 6;
-		*(ret + 1) = 128 + (63 & wc);
-		wc = wc >> 6;
-		*(ret) = 128 + 64 + 32 + (15 & wc);
-		return (ret);
-	}
-	else if (wc >= 65536 && wc < 2097152)
-		return (four_byte_char(wc, ret));
-	return (NULL);
-}
-
-static char		four_byte_char(wchar_t wc, char *ret)
-{
-	*(ret + 3) = 256 + (127 & wc);
-	wc = wc >> 6;
-	*(ret + 2) = 256 + (127 & wc);
-	wc = wc >> 6;
-	*(ret + 1) = 256 + (127 & wc);
-	wc = wc >> 6;
-	*(ret) = 128 + 64 + 32 + 16 + (7 & wc);
-	return (ret);
 }

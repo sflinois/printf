@@ -6,7 +6,7 @@
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/09 11:03:01 by sflinois          #+#    #+#             */
-/*   Updated: 2017/03/25 13:50:50 by sflinois         ###   ########.fr       */
+/*   Updated: 2017/03/25 13:53:25 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,6 @@ int				conv_dou_arg(t_expr expr, va_list *args)
 		disp = ft_imttoa_base(i, 10, 0);
 	return (end_conv(expr, disp));
 }
-
-
 
 int				conv_p_arg(t_expr expr, va_list *args)
 {
