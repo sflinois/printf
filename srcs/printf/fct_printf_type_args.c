@@ -6,7 +6,7 @@
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/09 11:03:01 by sflinois          #+#    #+#             */
-/*   Updated: 2017/03/22 13:28:36 by sflinois         ###   ########.fr       */
+/*   Updated: 2017/03/25 13:50:50 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,34 +69,7 @@ int				conv_dou_arg(t_expr expr, va_list *args)
 	return (end_conv(expr, disp));
 }
 
-int				conv_s_arg(t_expr expr, va_list *args)
-{
-	char		*s;
-	wchar_t		*ws;
-	char		*disp;
 
-	if (expr.type == 's' && expr.length != L_L)
-	{
-		s = va_arg(*args, char*);
-		if (s == NULL)
-			disp = expr.precision != -1 ?
-				ft_strndup("(null)", expr.precision) : ft_strdup("(null)");
-		else
-			disp = expr.precision != -1 ?
-				ft_strndup(s, expr.precision) : ft_strdup(s);
-	}
-	else
-	{
-		ws = va_arg(*args, wchar_t*);
-		if (ws == NULL)
-			disp = expr.precision != -1 ?
-				ft_strndup("(null)", expr.precision) : ft_strdup("(null)");
-		else
-			disp = expr.precision != -1 ?
-				ft_retnwstr(ws, expr.precision) : ft_retwstr(ws);
-	}
-	return (end_conv(expr, disp));
-}
 
 int				conv_p_arg(t_expr expr, va_list *args)
 {

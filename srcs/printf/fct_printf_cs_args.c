@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fct_printf_c_args.c                                :+:      :+:    :+:   */
+/*   fct_printf_cs_args.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/19 14:26:18 by sflinois          #+#    #+#             */
-/*   Updated: 2017/03/19 14:28:07 by sflinois         ###   ########.fr       */
+/*   Created: 2017/03/25 13:51:31 by sflinois          #+#    #+#             */
+/*   Updated: 2017/03/25 13:51:33 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,33 @@ int				conv_c_arg(t_expr expr, va_list *args)
 		disp = ft_retwchar((wchar_t)wc);
 	}
 	return (end_conv_c(expr, disp, c, wc));
+}
+
+int				conv_s_arg(t_expr expr, va_list *args)
+{
+	char		*s;
+	wchar_t		*ws;
+	char		*disp;
+
+	if (expr.type == 's' && expr.length != L_L)
+	{
+		s = va_arg(*args, char*);
+		if (s == NULL)
+			disp = expr.precision != -1 ?
+				ft_strndup("(null)", expr.precision) : ft_strdup("(null)");
+		else
+			disp = expr.precision != -1 ?
+				ft_strndup(s, expr.precision) : ft_strdup(s);
+	}
+	else
+	{
+		ws = va_arg(*args, wchar_t*);
+		if (ws == NULL)
+			disp = expr.precision != -1 ?
+				ft_strndup("(null)", expr.precision) : ft_strdup("(null)");
+		else
+			disp = expr.precision != -1 ?
+				ft_retnwstr(ws, expr.precision) : ft_retwstr(ws);
+	}
+	return (end_conv(expr, disp));
 }

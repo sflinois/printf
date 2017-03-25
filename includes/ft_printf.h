@@ -6,36 +6,36 @@
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/10 15:24:30 by sflinois          #+#    #+#             */
-/*   Updated: 2017/03/19 14:20:07 by sflinois         ###   ########.fr       */
+/*   Updated: 2017/03/25 13:50:26 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
-#define FT_PRINTF_H
+# define FT_PRINTF_H
 
-#include <stdarg.h>
-#include <inttypes.h>
+# include <stdarg.h>
+# include <inttypes.h>
 
 /*
 ** Binary flags for printf flags
 */
 
-#define F_SHARP		1
-#define F_ZERO		2
-#define F_MINUS		4
-#define F_PLUS		8
-#define F_SPACE		16
+# define F_SHARP	1
+# define F_ZERO		2
+# define F_MINUS	4
+# define F_PLUS		8
+# define F_SPACE	16
 
 /*
 ** Binary flags for printf length modifier
 */
 
-#define L_HH		1
-#define L_H			2
-#define L_L			4
-#define L_LL		8
-#define L_J			16
-#define L_Z			32
+# define L_HH		1
+# define L_H		2
+# define L_L		4
+# define L_LL		8
+# define L_J		16
+# define L_Z		32
 
 typedef struct		s_expr
 {
@@ -43,7 +43,7 @@ typedef struct		s_expr
 	unsigned int	min_width;
 	int				precision;
 	unsigned char	length;
-	char			type;	
+	char			type;
 }					t_expr;
 
 typedef struct		s_conv
@@ -79,11 +79,12 @@ void				pars_precision(char **format, t_expr *expr);
 void				pars_length(char **format, t_expr *expr);
 int					process_conv(va_list *args, char **format);
 int					process_args(va_list *args, char *format);
-int					conv_int_arg(t_expr, va_list *args);
-int					conv_dou_arg(t_expr, va_list *args);
-int					conv_c_arg(t_expr, va_list *args);
-int					conv_s_arg(t_expr, va_list *args);
-int					conv_p_arg(t_expr, va_list *args);
-int					conv_pct_arg(t_expr, va_list *args);
+int					conv_int_arg(t_expr expr, va_list *args);
+int					conv_dou_arg(t_expr expr, va_list *args);
+int					conv_c_arg(t_expr expr, va_list *args);
+int					conv_s_arg(t_expr expr, va_list *args);
+int					conv_p_arg(t_expr expr, va_list *args);
+int					conv_pct_arg(t_expr expr, va_list *args);
+int					end_conv(t_expr expr, char *disp);
 
 #endif
