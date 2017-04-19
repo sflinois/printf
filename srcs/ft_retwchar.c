@@ -6,7 +6,7 @@
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/10 14:49:26 by sflinois          #+#    #+#             */
-/*   Updated: 2017/04/19 11:48:23 by sflinois         ###   ########.fr       */
+/*   Updated: 2017/04/19 12:18:46 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,13 +56,13 @@ size_t			ft_wcharlen(wchar_t wc)
 	size_t		size;
 
 	size = 0;
-	if (wc >= 0 && wc < 128 && MB_CUR_MAX < 1)
+	if (wc >= 0 && wc < 128 && MB_CUR_MAX > 0)
 		size = 1;
-	else if (wc >= 128 && wc < 2048 && MB_CUR_MAX < 2)
+	else if (wc >= 128 && wc < 2048 && MB_CUR_MAX > 1)
 		size = 2;
-	else if (wc >= 2048 && wc < 65536 && MB_CUR_MAX < 3)
+	else if (wc >= 2048 && wc < 65536 && MB_CUR_MAX > 2)
 		size = 3;
-	else if (wc >= 65536 && wc < 2097152 && MB_CUR_MAX < 4)
+	else if (wc >= 65536 && wc < 2097152 && MB_CUR_MAX > 3)
 		size = 4;
 	return (size);
 }
