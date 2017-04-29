@@ -6,7 +6,7 @@
 /*   By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/15 11:22:10 by sflinois          #+#    #+#             */
-/*   Updated: 2017/04/19 11:30:20 by sflinois         ###   ########.fr       */
+/*   Updated: 2017/04/29 14:39:06 by sflinois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,13 @@ typedef struct		s_btree
 	struct s_btree	*right;
 	void			*item;
 }					t_btree;
+
+typedef struct		s_matrix
+{
+	int				nb_line;
+	int				nb_col;
+	int				**m;
+}					t_matrix;
 
 int					ft_atoi(const char *str);
 void				ft_bzero(void *s, size_t n);
@@ -119,5 +126,6 @@ char				*ft_retwchar(wchar_t wc);
 char				*ft_retwstr(wchar_t *wstr);
 char				*ft_retnwstr(wchar_t *wstr, size_t size);
 int					ft_printf(const char *format, ...);
+t_matrix			*ft_mtxnew(int nb_rows, int nb_cols, int **tab);
 
 #endif
