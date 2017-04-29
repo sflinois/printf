@@ -6,7 +6,7 @@
 #    By: sflinois <sflinois@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/10 11:48:48 by sflinois          #+#    #+#              #
-#    Updated: 2017/04/19 12:03:07 by sflinois         ###   ########.fr        #
+#    Updated: 2017/04/29 12:32:22 by sflinois         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,8 +41,8 @@ SRC_NAME = ft_btree_create_node.c ft_btree_apply_prefix.c \
 		ft_strnew.c ft_strnstr.c ft_strrchr.c \
 		ft_strsplit.c ft_strstr.c ft_strsub.c \
 		ft_strtrim.c ft_tolower.c ft_toupper.c \
-		ft_itoa_base.c ft_digit_to_char.c ft_litoa_base.c \
-		ft_litoa.c ft_imttoa.c ft_imttoa_base.c \
+		ft_itoa_base.c ft_digit_to_char.c \
+		ft_imttoa.c ft_imttoa_base.c \
 		ft_retwchar.c ft_retwstr.c ft_retnwstr.c
 		
 S_PRINTF_PATH = $(SRC_PATH)/printf
@@ -52,13 +52,12 @@ S_PRINTF_NAME = ft_printf.c fct_printf_type_args.c fct_expr.c \
 		fct_printf_length.c fct_printf_parsing.c \
 
 OBJ_PATH = objs
-O_PRINTF_PATH = o_printf
 CPPFLAGS = -Iincludes
 
 LDFLAGS = -Llibft
 LDLIBS = -lft
 
-NAME = libftprintf.a
+NAME = libft.a
 
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
@@ -69,21 +68,21 @@ O_PRINTF_NAME = $(S_PRINTF_NAME:.c=.o)
 SRC = $(addprefix $(SRC_PATH)/,$(SRC_NAME))
 OBJ = $(addprefix $(OBJ_PATH)/,$(OBJ_NAME))
 S_PRINTF = $(addprefix $(S_PRINTF_PATH)/,$(S_PRINTF_NAME))
-O_PRINTF = $(addprefix $(O_PRINTF_PATH)/,$(O_PRINTF_NAME))
+O_PRINTF = $(addprefix $(OBJ_PATH)/,$(O_PRINTF_NAME))
 
 all: $(NAME)
 
 $(NAME): $(OBJ) $(O_PRINTF)
 	@ar rc $@ $^
 	@ranlib $(NAME)
-	@echo $(CCGREEN) Libftprintf OK $(CCEND)
+	@echo $(CCGREEN) Libft OK $(CCEND)
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
 	@mkdir $(OBJ_PATH) 2> /dev/null || true
 	$(CC) $(CFLAGS) $(CPPFLAGS) -o $@ -c $<
 
-$(O_PRINTF_PATH)/%.o : $(S_PRINTF_PATH)/%.c
-	@mkdir $(O_PRINTF_PATH) 2> /dev/null || true
+$(OBJ_PATH)/%.o : $(S_PRINTF_PATH)/%.c
+	@mkdir $(O_BJ_PATH) 2> /dev/null || true
 	$(CC) $(CFLAGS) $(CPPFLAGS) -o $@ -c $<
 
 clean:
